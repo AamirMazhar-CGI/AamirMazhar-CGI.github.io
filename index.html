@@ -260,6 +260,16 @@
 .xp-body li+li{margin-top:4px}
 .xp-group{margin:64px 0 22px;font-family:'Space Grotesk',sans-serif;font-size:clamp(30px,3.6vw,48px);font-weight:500;letter-spacing:-.02em}
 @media(max-width:720px){.xp-item{grid-template-columns:1fr;gap:8px;padding:24px 0}}
+
+    .game-project{margin-top:64px;padding-top:32px;border-top:1px solid var(--line)}
+    .game-project-header{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:24px}
+    .game-project h3{font-size:clamp(26px,4vw,40px);margin:8px 0}
+    .game-project p,.game-clips figcaption{color:#cccbd0}
+    .game-clips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+    .game-clips figure{margin:0;min-width:0}
+    .game-clips video{display:block;width:100%;height:clamp(280px,42vw,520px);object-fit:contain;background:#080809;border:1px solid var(--line);border-radius:9px}
+    .game-clips figcaption{padding-top:10px;font-size:13px}
+    @media(max-width:600px){.game-clips{grid-template-columns:1fr}.game-clips video{height:clamp(280px,125vw,520px)}}
 </style>
 </head>
 <body>
@@ -284,6 +294,32 @@
 <article class="project" data-category="rigging"><div aria-label="View the hand rig" class="project-media" data-desc="FK hand with three joints on every finger, so animators can build fists, points and grips quickly." data-title="Hand &amp; Fingers" data-type="BODY RIGGING" role="button" tabindex="0"><img alt="Close-up of a curled hand with finger controls visible" loading="lazy" src="assets/rig/hand-fingers.jpg"/><span class="corner">↗</span><span class="tag">04 / HANDS</span></div><div class="project-info"><h3>Hand &amp; Fingers</h3><span>RIGGING / 2026</span></div></article>
 <article class="project" data-category="character"><div aria-label="View the final character" class="project-media" data-desc="The finished character in its sports kit with the controls hidden — the deformation the animator works with. Kit and skin textures were updated for this presentation." data-title="Final Character" data-type="CHARACTER / LOOK DEV" role="button" tabindex="0"><img alt="Stylised sports character in a blue and orange kit, full body render" loading="lazy" src="assets/rig/final-character.jpg"/><span class="corner">↗</span><span class="tag">05 / FINAL</span></div><div class="project-info"><h3>Final Character</h3><span>CHARACTER / 2026</span></div></article>
 </div>
+<article class="game-project" aria-labelledby="fast-ball-jump-title">
+  <div class="game-project-header">
+    <div>
+      <div class="eyebrow">Mobile game creatives</div>
+      <h3 id="fast-ball-jump-title">Fast Ball Jump</h3>
+      <p>Two promotional videos I created for the mobile game.</p>
+    </div>
+    <a class="primary-btn" href="https://play.google.com/store/apps/details?id=com.garena.ball.run.goingball.ironball.rollingball&amp;hl=en" target="_blank" rel="noopener noreferrer">View on Google Play <span aria-hidden="true">&#8599;</span></a>
+  </div>
+  <div class="game-clips">
+    <figure>
+      <video controls playsinline preload="metadata" aria-labelledby="sbj-015">
+        <source src="assets/fast-ball-jump/SBJ_015.mp4" type="video/mp4">
+        <a href="assets/fast-ball-jump/SBJ_015.mp4">Open SBJ 015</a>
+      </video>
+      <figcaption id="sbj-015">SBJ 015</figcaption>
+    </figure>
+    <figure>
+      <video controls playsinline preload="metadata" aria-labelledby="sbj-021">
+        <source src="assets/fast-ball-jump/SBJ_021.mp4" type="video/mp4">
+        <a href="assets/fast-ball-jump/SBJ_021.mp4">Open SBJ 021</a>
+      </video>
+      <figcaption id="sbj-021">SBJ 021</figcaption>
+    </figure>
+  </div>
+</article>
 </section>
 <section aria-label="How I work" class="wrap approach"><div class="approach-head"><div class="eyebrow">02 / HOW I WORK</div><h2>From game<br/>to <em>store.</em></h2><p>A mobile game creative has one job: make someone stop scrolling. I start from the game itself, keep every frame on-brand, and deliver to each platform&#39;s specs.</p></div><div class="approach-grid"><div class="approach-item"><span class="approach-num">01 — UNDERSTAND</span><div class="approach-icon">✳</div><h3>Know the game</h3><p>Play the game, understand its audience, and pick the moments worth showing.</p></div><div class="approach-item"><span class="approach-num">02 — CREATE</span><div class="approach-icon">◈</div><h3>Build the visuals</h3><p>Create CGI scenes, characters and rigs in Blender, then edit and polish in After Effects, Premiere Pro and Photoshop.</p></div><div class="approach-item"><span class="approach-num">03 — DELIVER</span><div class="approach-icon">↗</div><h3>Ship to every platform</h3><p>Export creatives and store assets in the formats and sizes that Mintegral, Google Ads, Google Play and the App Store need.</p></div></div></section>
 <section class="wrap about" id="about"><div><div class="eyebrow">03 / ABOUT ME</div><h2>Games, CGI<br/><em>&amp; rigging.</em></h2><p>I'm Aamir Mazhar, a CGI artist from Multan, Pakistan. Since 2021 I've worked at Topedge Technologies, creating ad creatives for mobile games on Mintegral and Google Ads, and store listings for the Google Play Store and Apple App Store.</p><p>I also build 3D character rigs in Blender, with clean controls for animators and deformation that holds up in motion. My background is in graphic design and social media, and I hold a BS in Information Technology.</p><div class="eyebrow" id="expertise" style="margin-top:37px">SKILLS</div><div class="skills"><span class="skill">3D MODEL RIGGING</span><span class="skill">MOBILE GAME AD CREATIVES</span><span class="skill">STORE LISTINGS</span><span class="skill">MINTEGRAL &amp; GOOGLE ADS</span><span class="skill">SOCIAL MEDIA DESIGN</span></div><div class="eyebrow" style="margin-top:28px">TOOLS</div><div class="skills"><span class="skill">BLENDER</span><span class="skill">UNITY</span><span class="skill">PHOTOSHOP</span><span class="skill">ILLUSTRATOR</span><span class="skill">AFTER EFFECTS</span><span class="skill">PREMIERE PRO</span></div></div><div aria-label="Second abstract silver sculptural CGI-inspired artwork" class="about-art" role="img"><span class="about-count">FIG. / 002</span><span class="about-caption">SHAPES BEYOND THE EXPECTED.</span></div></section>
