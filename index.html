@@ -145,6 +145,11 @@ figcaption{color:var(--muted);font-size:13px;text-align:center;margin-top:10px}
 .phones.two{grid-template-columns:repeat(2,minmax(0,280px));justify-content:center}
 .phone video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:20px;border:1px solid var(--line);background:#000}
 .phone.square video{aspect-ratio:1/1}
+.phone.wide{grid-column:1/-1}
+.phone.wide video{aspect-ratio:16/9}
+.art-grid.four{grid-template-columns:repeat(4,1fr)}
+.wide-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-items:start;margin-bottom:16px}
+.wide-grid img{width:100%;height:auto;border-radius:18px;border:1px solid var(--line);background:#111}
 .art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
 .art-grid img,.shot-grid img{width:100%;border-radius:18px;border:1px solid var(--line);background:#111}
 .shot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
@@ -183,7 +188,8 @@ img[width][height]{height:auto}
 @media (max-width:760px){
   .card{padding:24px 18px;border-radius:22px}
   .tiles,.phones,.art-grid{grid-template-columns:repeat(2,1fr);gap:12px}
-  .phones.two{grid-template-columns:repeat(2,1fr)}
+  .phones.two,.art-grid.four{grid-template-columns:repeat(2,1fr)}
+  .wide-grid{grid-template-columns:1fr}
   .phone.square,.art-grid .art-square{grid-column:1/-1}
   .phone.square video{max-width:360px;margin:0 auto}
   .tiles .tile:last-child:nth-child(odd){grid-column:1/-1}
@@ -270,7 +276,7 @@ img[width][height]{height:auto}
   <p class="lead">Three areas of work. Pick one to see everything in it.</p>
   <div class="card">
     <div class="tiles">
-      <a class="tile" href="#video-ads" style="--i:0"><div class="thumb"><img alt="" decoding="async" loading="lazy" src="assets/web/candy-ball-run/cnd-062-poster.jpg"/><video aria-hidden="true" data-src="assets/web/candy-ball-run/preview.mp4" loop muted playsinline preload="none"></video><span class="tag">18 CREATIVES</span><span class="go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><h3>Video Ads</h3><p>Mobile game ad creatives</p></a>
+      <a class="tile" href="#video-ads" style="--i:0"><div class="thumb"><img alt="" decoding="async" loading="lazy" src="assets/web/candy-ball-run/cnd-062-poster.jpg"/><video aria-hidden="true" data-src="assets/web/candy-ball-run/preview.mp4" loop muted playsinline preload="none"></video><span class="tag">24 CREATIVES</span><span class="go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><h3>Video Ads</h3><p>Mobile game ad creatives</p></a>
       <a class="tile" href="#3d-rigging" style="--i:1"><div class="thumb"><img alt="" decoding="async" loading="lazy" src="assets/rig/final-character.jpg"/><video aria-hidden="true" data-src="assets/rig/sports-rig-showreel-1080p.mp4" loop muted playsinline preload="none"></video><span class="tag">BLENDER</span><span class="go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><h3>3D Rigging</h3><p>Body &amp; facial character rig</p></a>
       <a class="tile" href="#store-listings" style="--i:2"><div class="thumb"><img alt="" decoding="async" loading="lazy" src="assets/candy-ball-run/rise-to-victory.png"/><span class="tag">GOOGLE PLAY</span><span class="go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><h3>Store Listings</h3><p>Store artwork for mobile games</p></a>
     </div>
@@ -283,7 +289,7 @@ img[width][height]{height:auto}
     <div class="eyebrow">Section 01 · Mobile game ad creatives</div>
     <h2 id="ads-title" tabindex="-1">Video Ads<span class="dot">.</span></h2>
     <p>Video ad creatives for mobile games, made to stop the scroll and delivered to each platform's specs.</p>
-    <dl class="facts"><div><dt>Role</dt><dd>CGI Artist</dd></div><div><dt>Platforms</dt><dd>Mintegral · Google Ads</dd></div><div><dt>Formats</dt><dd>9:16 · 1:1</dd></div></dl>
+    <dl class="facts"><div><dt>Role</dt><dd>CGI Artist</dd></div><div><dt>Platforms</dt><dd>Mintegral · Google Ads</dd></div><div><dt>Formats</dt><dd>9:16 · 1:1 · 16:9</dd></div></dl>
   </div>
   <div class="card">
     <h3 class="section-title">Candy Ball Run</h3>
@@ -310,6 +316,18 @@ img[width][height]{height:auto}
     <div class="phones two">
       <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/circus-balls/cb-077-poster.jpg" preload="none"><source src="assets/circus-balls/CB_077.mp4" type="video/mp4"/></video><figcaption>Creative 077 · 9:16</figcaption></figure>
       <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/circus-balls/cb-078-poster.jpg" preload="none"><source src="assets/circus-balls/CB_078.mp4" type="video/mp4"/></video><figcaption>Creative 078 · 9:16</figcaption></figure>
+    </div>
+  </div>
+  <div class="card">
+    <h3 class="section-title">Farm Sort</h3>
+    <span class="label">6 creatives · 9:16 and 16:9</span>
+    <div class="phones">
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/farm-sort/fs-023-poster.jpg" preload="none"><source src="assets/farm-sort/FS_023.mp4" type="video/mp4"/></video><figcaption>Creative 023 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/farm-sort/fs-039-poster.jpg" preload="none"><source src="assets/farm-sort/FS_039.mp4" type="video/mp4"/></video><figcaption>Creative 039 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/farm-sort/fs-040-poster.jpg" preload="none"><source src="assets/farm-sort/FS_040.mp4" type="video/mp4"/></video><figcaption>Creative 040 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/farm-sort/fs-043-poster.jpg" preload="none"><source src="assets/farm-sort/FS_043.mp4" type="video/mp4"/></video><figcaption>Creative 043 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/farm-sort/fs-084-poster.jpg" preload="none"><source src="assets/farm-sort/FS_084.mp4" type="video/mp4"/></video><figcaption>Creative 084 · 9:16</figcaption></figure>
+      <figure class="phone wide"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/farm-sort/fs-050-poster.jpg" preload="none"><source src="assets/farm-sort/FS_050.mp4" type="video/mp4"/></video><figcaption>Creative 050 · 16:9</figcaption></figure>
     </div>
   </div>
   <div class="card">
@@ -379,6 +397,20 @@ img[width][height]{height:auto}
       <figure class="art-square"><img alt="Blue candy ball on a pink track with coins and a doughnut arch" decoding="async" height="512" loading="lazy" src="assets/candy-ball-run/candy-track.png" width="512"/><figcaption>Candy Track</figcaption></figure>
     </div>
     <div class="next" style="margin-top:22px"><a class="btn solid inline" href="https://play.google.com/store/apps/details?id=com.candy.ball.run.games.arena&amp;hl=en" rel="noopener noreferrer" target="_blank">View the live listing <svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+  </div>
+  <div class="card">
+    <h3 class="section-title">Farm Sort</h3>
+    <span class="label">Google Play feature graphic and screenshots</span>
+    <div class="wide-grid">
+      <figure><img alt="Farm Sort logo over shelves full of farm goods" decoding="async" height="500" loading="lazy" src="assets/farm-sort/store/feature-graphic.webp" width="1024"/><figcaption>Feature graphic</figcaption></figure>
+      <figure><img alt="Match Farm Goods screenshot with stocked shelves and a herb mix jar" decoding="async" height="1080" loading="lazy" src="assets/farm-sort/store/match-farm-goods.webp" width="1920"/><figcaption>Match Farm Goods</figcaption></figure>
+    </div>
+    <div class="art-grid four">
+      <figure><img alt="Match 3 Objects screenshot with a hand dragging a carrot between shelves" decoding="async" height="1920" loading="lazy" src="assets/farm-sort/store/match-3-objects.webp" width="1080"/><figcaption>Match 3 Objects</figcaption></figure>
+      <figure><img alt="Organize Objects screenshot with shelves of labelled bottles and jars" decoding="async" height="1920" loading="lazy" src="assets/farm-sort/store/organize-objects.webp" width="1080"/><figcaption>Organize Objects</figcaption></figure>
+      <figure><img alt="Farm Puzzle screenshot with shelves standing on grass under a blue sky" decoding="async" height="1920" loading="lazy" src="assets/farm-sort/store/farm-puzzle.webp" width="1080"/><figcaption>Farm Puzzle</figcaption></figure>
+      <figure><img alt="Brain Sorting screenshot with sold-out shelf signs" decoding="async" height="1920" loading="lazy" src="assets/farm-sort/store/brain-sorting.webp" width="1080"/><figcaption>Brain Sorting</figcaption></figure>
+    </div>
   </div>
   <div class="next"><a class="chip" href="#3d-rigging">← 3D Rigging</a><a class="chip" href="#portfolio">All sections →</a></div>
 </section>
