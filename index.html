@@ -226,7 +226,7 @@ img[width][height]{height:auto}
     <button aria-label="Back" data-hist="back" type="button"><svg class="i" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span class="txt txt-opt">Back</span></button>
     <span class="sep" aria-hidden="true"></span>
     <a data-nav="home" href="#home"><svg class="i" viewBox="0 0 24 24"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/></svg><span class="txt">Home</span></a>
-    <a data-nav="video-ads" href="#video-ads"><svg class="i" viewBox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="4"/><path d="M10 9.5v5l4.5-2.5z"/></svg><span class="txt">Video Ads</span></a><a data-nav="3d-rigging" href="#3d-rigging"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2"/><path d="M12 7v7M6 9.5l6-1 6 1M12 14l-3.5 6.5M12 14l3.5 6.5"/></svg><span class="txt">3D Rigging</span></a><a data-nav="store-listings" href="#store-listings"><svg class="i" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="txt">Store</span></a><a data-nav="about" href="#about"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg><span class="txt">About</span></a>
+    <a data-nav="portfolio" href="#portfolio"><svg class="i" viewBox="0 0 24 24"><rect height="7" rx="1.5" width="7" x="3" y="3"/><rect height="7" rx="1.5" width="7" x="14" y="3"/><rect height="7" rx="1.5" width="7" x="3" y="14"/><rect height="7" rx="1.5" width="7" x="14" y="14"/></svg><span class="txt">Portfolio</span></a><a data-nav="about" href="#about"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg><span class="txt">About</span></a>
     <span class="sep" aria-hidden="true"></span>
     <button aria-label="Forward" data-hist="forward" type="button"><span class="txt txt-opt">Forward</span><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
   </nav>
@@ -242,9 +242,7 @@ img[width][height]{height:auto}
     <div class="status"><i></i>BASED IN PAKISTAN</div>
     <p class="intro">5 years creating ad creatives and store listings for mobile games, and building 3D character rigs in Blender.</p>
     <div class="btn-stack">
-      <a class="btn" href="#video-ads"><svg class="i" viewBox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="4"/><path d="M10 9.5v5l4.5-2.5z"/></svg>Video Ads</a>
-      <a class="btn" href="#3d-rigging"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2"/><path d="M12 7v7M6 9.5l6-1 6 1M12 14l-3.5 6.5M12 14l3.5 6.5"/></svg>3D Rigging</a>
-      <a class="btn" href="#store-listings"><svg class="i" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Store Listings</a>
+      <a class="btn" href="#portfolio"><svg class="i fill" viewBox="0 0 24 24"><path d="m12 2.5 2.9 6 6.6.8-4.9 4.5 1.3 6.5L12 17l-5.9 3.3 1.3-6.5L2.5 9.3l6.6-.8z"/></svg>Portfolio</a>
       <a class="btn" href="#about"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>About me</a>
     </div>
   </div>
@@ -439,7 +437,7 @@ img[width][height]{height:auto}
       // if the browser pauses animations (background tab, power saving).
       if(on){p.hidden=false;if(!reduced){p.classList.remove('enter');void p.offsetWidth;p.classList.add('enter');clearTimeout(p._t);p._t=setTimeout(()=>p.classList.remove('enter'),1300)}}
     });
-    const section=id;
+    const section=['video-ads','3d-rigging','store-listings'].includes(id)?'portfolio':id;
     navLinks.forEach(a=>a.dataset.nav===section?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
     document.title=titles[id]||titles.home;
     if(!first){window.scrollTo({top:0,behavior:'instant'});const t=document.querySelector('#page-'+id+' [tabindex="-1"]');if(t)t.focus({preventScroll:true})}
