@@ -276,6 +276,99 @@
     .game-artwork img{display:block;width:100%;height:clamp(280px,42vw,520px);object-fit:contain;background:#080809;border:1px solid var(--line);border-radius:9px}
     @media(min-width:901px){.game-clips-three{grid-template-columns:repeat(3,minmax(0,1fr))}}
     @media(max-width:600px){.game-artwork img{height:clamp(280px,125vw,520px)}}
+
+/* V6: games-first work grid, project case panel, motion */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+.work-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.work-card{position:relative;display:block;aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:#141417;border:1px solid #ffffff14;isolation:isolate;color:var(--text);
+  opacity:0;translate:0 46px;transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transition:opacity .9s var(--ease-premium),translate .9s var(--ease-premium),transform .45s var(--ease-premium),border-color .3s,box-shadow .45s;transition-delay:calc(var(--i,0) * .12s),calc(var(--i,0) * .12s),0s,0s,0s}
+.work-card.in{opacity:1;translate:0 0}
+.work-card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;z-index:4;pointer-events:none;background:conic-gradient(from var(--ang),transparent 0 62%,var(--accent) 80%,transparent 96%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s;animation:wc-spin 3.6s linear infinite}
+.work-card:hover::before,.work-card:focus-visible::before{opacity:1}
+.work-card:hover{box-shadow:0 34px 70px #000b}
+.wc-media{position:absolute;inset:0;z-index:0;background:#101013}
+.wc-media video{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.1s var(--ease-premium),filter .5s;filter:saturate(.9)}
+.work-card:hover .wc-media video{transform:scale(1.11);filter:saturate(1.08)}
+.wc-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0b0b0d66 0,transparent 26%,transparent 46%,#0b0b0de6 100%)}
+.wc-glare{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(460px circle at var(--gx,50%) var(--gy,0%),#ffffff2e,transparent 46%);opacity:0;transition:opacity .35s}
+.work-card:hover .wc-glare{opacity:1}
+.wc-top{position:absolute;top:18px;left:18px;right:18px;z-index:3;display:flex;justify-content:space-between;align-items:center}
+.wc-index{font:600 13px/1 'Space Grotesk',sans-serif;letter-spacing:.06em;color:#fff;background:#0b0b0d99;border:1px solid #ffffff24;border-radius:999px;padding:8px 11px;backdrop-filter:blur(8px)}
+.wc-chip{font-size:10px;font-weight:700;letter-spacing:.14em;color:#111;background:var(--accent);border-radius:999px;padding:8px 12px}
+.wc-body{position:absolute;left:22px;right:22px;bottom:22px;z-index:3}
+.wc-body h3{margin:0;font:500 clamp(26px,2.3vw,36px)/1 'Space Grotesk',sans-serif;letter-spacing:-.035em}
+.wc-body p{margin:9px 0 0;color:#d4d2d8;font-size:13px}
+.wc-cta{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:11px;font-weight:700;letter-spacing:.15em;color:var(--accent);opacity:0;transform:translateY(10px);transition:opacity .4s var(--ease-premium),transform .4s var(--ease-premium)}
+.wc-cta span{transition:transform .4s var(--ease-premium)}
+.work-card:hover .wc-cta,.work-card:focus-visible .wc-cta{opacity:1;transform:none}
+.work-card:hover .wc-cta span{transform:translateX(5px)}
+@media (hover:none){.wc-cta{opacity:1;transform:none}}
+@keyframes wc-spin{to{--ang:360deg}}
+
+body.case-open{overflow:hidden}
+.case{position:fixed;inset:0;z-index:80;display:none;background:radial-gradient(1200px 600px at 80% -10%,#d7ff6312,transparent 60%),#0b0b0d}
+.case.open{display:block}
+.case-bar{position:absolute;top:0;left:0;right:0;height:66px;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:0 max(24px,calc((100% - var(--max))/2 + 24px));border-bottom:1px solid var(--line);background:#0b0b0de0;backdrop-filter:blur(16px)}
+.case-crumb{font-size:11px;letter-spacing:.16em;color:#9b9aa1}
+.case-crumb b{color:var(--text);font-weight:700}
+.case-close{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--text);border:1px solid #ffffff2e;border-radius:999px;padding:10px 16px;font-size:11px;font-weight:700;letter-spacing:.14em;cursor:pointer;transition:border-color .3s,color .3s,transform .3s}
+.case-close:hover{border-color:var(--accent);color:var(--accent)}
+.case-close span{transition:transform .4s var(--ease-premium)}
+.case-close:hover span{transform:rotate(90deg)}
+.case-scroll{position:absolute;inset:66px 0 0;overflow-y:auto;overscroll-behavior:contain}
+.case-inner{padding:56px 0 110px}
+.case.open .case-inner>*{animation:case-in .9s var(--ease-premium) both}
+.case.open .case-inner>*:nth-child(2){animation-delay:.12s}
+.case.open .case-inner>*:nth-child(3){animation-delay:.22s}
+.case.open .case-inner>*:nth-child(4){animation-delay:.3s}
+@keyframes case-in{from{opacity:0;transform:translateY(34px)}}
+.case-head h2{margin:18px 0 20px;font:500 clamp(48px,7.4vw,112px)/.9 'Space Grotesk',sans-serif;letter-spacing:-.055em}
+.dot-accent{color:var(--accent)}
+.case-lead{max-width:680px;margin:0;color:#cfcdd3;font-size:clamp(16px,1.4vw,19px);line-height:1.6}
+.case-facts{display:flex;flex-wrap:wrap;gap:16px 56px;margin:32px 0;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.case-facts dt{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8f8e95}
+.case-facts dd{margin:6px 0 0;font-size:16px;color:var(--text)}
+.case-block{margin-top:78px}
+.case-title{display:flex;align-items:baseline;gap:16px;margin:0 0 28px;font:500 clamp(26px,2.6vw,36px)/1 'Space Grotesk',sans-serif;letter-spacing:-.03em}
+.case-title span{font-size:12px;letter-spacing:.14em;color:var(--accent);font-family:'DM Sans',sans-serif;font-weight:700}
+.phones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.6vw,36px);align-items:end;max-width:1040px}
+.phones.phones-two{grid-template-columns:repeat(2,minmax(0,1fr));max-width:700px}
+.phone{margin:0;width:100%}
+.phone video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:#000;border-radius:30px;border:9px solid #1c1c21;box-shadow:0 34px 70px #0009,inset 0 0 0 1px #ffffff14;transition:transform .5s var(--ease-premium)}
+.phone:hover video{transform:translateY(-6px)}
+.phone.square video{aspect-ratio:1/1;border-radius:22px}
+.phone figcaption,.art-grid figcaption,.shot-grid figcaption{margin-top:14px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9b9aa1}
+.art-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:end}
+.art-grid figure,.shot-grid figure{margin:0}
+.art-grid img,.shot-grid img{width:100%;height:auto;border-radius:16px;border:1px solid #ffffff14;background:#141417;transition:transform .6s var(--ease-premium)}
+.art-grid figure:hover img,.shot-grid figure:hover img{transform:translateY(-6px)}
+.reel{margin:0}
+.reel video{display:block;width:100%;aspect-ratio:16/9;border-radius:18px;background:#000;border:1px solid #ffffff14}
+.rig-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 34px}
+.rig-list li{padding:18px 0;border-top:1px solid var(--line);color:#cfcdd3;line-height:1.55}
+.rig-list b{color:var(--text)}
+.shot-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.shot-grid img{aspect-ratio:16/9;object-fit:cover}
+
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.05em;margin-bottom:-.05em}
+.hero h1 .ln>span{display:inline-block;animation:line-up 1.15s var(--ease-premium) both}
+.hero h1 .ln+.ln>span{animation-delay:.13s}
+@keyframes line-up{from{transform:translateY(108%)}}
+.hero>.eyebrow{animation:fade-up .9s var(--ease-premium) .05s both}
+.hero .intro{animation:fade-up 1s var(--ease-premium) .32s both}
+.hero .hero-visual{animation:fade-up 1.2s var(--ease-premium) .5s both}
+@keyframes fade-up{from{opacity:0;transform:translateY(26px)}}
+.ticker.marquee{display:block;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.ticker-track{display:flex;gap:64px;width:max-content;animation:marquee 32s linear infinite}
+.ticker-track span{white-space:nowrap}
+.ticker.marquee:hover .ticker-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+@media(max-width:1000px){.work-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.art-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.work-grid{grid-template-columns:1fr}.work-card{aspect-ratio:4/4.6}.phones{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.phone video{border-width:6px;border-radius:20px}.phone.square{grid-column:1/-1;max-width:320px}.rig-list,.shot-grid{grid-template-columns:1fr}.case-inner{padding:36px 0 80px}.case-block{margin-top:56px}.case-bar{padding:0 16px}.case-crumb{max-width:55%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+@media(prefers-reduced-motion:reduce){.work-card{opacity:1;translate:none;transform:none}.work-card::before,.ticker-track{animation:none}.hero h1 .ln>span,.hero>.eyebrow,.hero .intro,.hero .hero-visual,.case.open .case-inner>*{animation:none}}
 </style>
 </head>
 <body>
@@ -288,94 +381,72 @@
 <main>
 <section aria-labelledby="hero-title" class="wrap hero">
 <div class="eyebrow">CGI ARTIST <span class="muted-mark">/</span> 3D RIGGING <span class="muted-mark">/</span> MOBILE GAME CREATIVES</div>
-<div class="hero-head"><h1 id="hero-title">MAKING<br/><span class="outline">THE</span> UNREAL<span style="color:var(--accent)">.</span></h1><div class="intro"><strong>Hi, I'm Aamir Mazhar.</strong> A CGI artist with 5 years of experience creating ad creatives and store listings for mobile games, and building 3D character rigs in Blender.<div class="hero-actions"><a class="primary-btn" href="#work">EXPLORE WORK <span aria-hidden="true">↗</span></a></div><a aria-label="Scroll to projects" class="mini-arrow" href="#work">↓</a></div></div>
+<div class="hero-head"><h1 id="hero-title"><span class="ln"><span>MAKING</span></span><span class="ln"><span><span class="outline">THE</span> UNREAL<span style="color:var(--accent)">.</span></span></span></h1><div class="intro"><strong>Hi, I'm Aamir Mazhar.</strong> A CGI artist with 5 years of experience creating ad creatives and store listings for mobile games, and building 3D character rigs in Blender.<div class="hero-actions"><a class="primary-btn" href="#work">EXPLORE WORK <span aria-hidden="true">↗</span></a></div><a aria-label="Scroll to projects" class="mini-arrow" href="#work">↓</a></div></div>
 <div aria-label="Abstract sculptural metallic CGI-inspired visual, in a dark studio setting" class="hero-visual" role="img"><span class="orbit"></span><span class="sculpture"></span><span class="visual-noise"></span><div class="visual-top">SELECTED VISUAL EXPLORATIONS — 2026</div><div class="visual-label">FORM STUDY / 001</div><div class="visual-index">[ SCROLL TO EXPLORE ↓ ]</div></div>
 <div class="ticker"><span>AD CREATIVES <b>✳</b> STORE LISTINGS</span><span>3D RIGGING <b>✳</b> BLENDER</span><span>MINTEGRAL <b>✳</b> GOOGLE ADS</span><span>SCROLL TO DISCOVER <b>↓</b></span></div>
 </section>
-<section aria-labelledby="work-heading" class="wrap section" id="work"><div class="section-top"><div><div class="eyebrow">01 / PORTFOLIO</div><h2 id="work-heading">Selected work<span style="color:var(--accent)">.</span></h2></div><div class="section-sub">Character rigging in Blender — clean controls for animators and deformation that holds up in motion.</div></div>
-<div class="projects">
-<article class="project featured" data-category="rigging"><div aria-label="Play the sports player character rig showreel" class="project-media" data-desc="Full body and facial control rig for a stylised sports game character. The body uses IK legs with pole targets and a heel, ball and toe foot roll, FK arms with an upper-arm twist control, three joints on every finger and a three-bone ponytail chain. The face rig adds blink, brow, lip-corner and jaw controls, with modelled teeth and a two-bone tongue. Stray weights were cleaned and the clothing weights matched to the body to reduce skin poking through in common poses." data-title="Sports Player — Character Rig" data-type="CHARACTER RIGGING / BLENDER" data-video="assets/rig/sports-rig-showreel-720p.mp4" role="button" tabindex="0"><video autoplay loop muted playsinline poster="assets/rig/showreel-poster.jpg" preload="metadata" aria-hidden="true"><source src="assets/rig/sports-rig-showreel-720p.mp4" type="video/mp4"/></video><span class="tag">01 / FEATURED REEL</span><span class="play" aria-hidden="true">▶ PLAY REEL</span><span class="corner">↗</span></div><div class="project-info"><h3>Sports Player — Character Rig</h3><p>A complete body and face rig for a stylised game character, from IK legs and foot roll to blinking eyes, an opening jaw and a rigged tongue.</p><div class="project-meta"><span>BLENDER</span><span>IK / FK</span><span>FACIAL RIG</span><span>WEIGHT PAINTING</span><span>2026</span></div></div></article>
-<article class="project" data-category="rigging"><div aria-label="View the facial rig" class="project-media" data-desc="Blink, brow, lip-corner and jaw controls on a low-poly face. The lip line is split so the jaw genuinely opens, with modelled teeth, gums and a two-bone tongue inside the mouth." data-title="Facial Rig" data-type="FACIAL RIGGING" role="button" tabindex="0"><img alt="Character face with facial rig controls and the jaw open showing teeth and tongue" loading="lazy" src="assets/rig/facial-rig.jpg"/><span class="corner">↗</span><span class="tag">02 / FACE</span></div><div class="project-info"><h3>Facial Rig</h3><span>RIGGING / 2026</span></div></article>
-<article class="project" data-category="rigging"><div aria-label="View the IK legs" class="project-media" data-desc="IK legs driven by foot controls, with pole targets that aim the knees and heel, ball and toe pivots for foot roll." data-title="IK Legs &amp; Knee Control" data-type="BODY RIGGING" role="button" tabindex="0"><img alt="Character crouching with leg IK and knee pole controls visible" loading="lazy" src="assets/rig/ik-legs.jpg"/><span class="corner">↗</span><span class="tag">03 / LEGS</span></div><div class="project-info"><h3>IK Legs &amp; Knee Control</h3><span>RIGGING / 2026</span></div></article>
-<article class="project" data-category="rigging"><div aria-label="View the hand rig" class="project-media" data-desc="FK hand with three joints on every finger, so animators can build fists, points and grips quickly." data-title="Hand &amp; Fingers" data-type="BODY RIGGING" role="button" tabindex="0"><img alt="Close-up of a curled hand with finger controls visible" loading="lazy" src="assets/rig/hand-fingers.jpg"/><span class="corner">↗</span><span class="tag">04 / HANDS</span></div><div class="project-info"><h3>Hand &amp; Fingers</h3><span>RIGGING / 2026</span></div></article>
-<article class="project" data-category="character"><div aria-label="View the final character" class="project-media" data-desc="The finished character in its sports kit with the controls hidden — the deformation the animator works with. Kit and skin textures were updated for this presentation." data-title="Final Character" data-type="CHARACTER / LOOK DEV" role="button" tabindex="0"><img alt="Stylised sports character in a blue and orange kit, full body render" loading="lazy" src="assets/rig/final-character.jpg"/><span class="corner">↗</span><span class="tag">05 / FINAL</span></div><div class="project-info"><h3>Final Character</h3><span>CHARACTER / 2026</span></div></article>
+<section aria-labelledby="work-heading" class="wrap section" id="work"><div class="section-top"><div><div class="eyebrow">01 / SELECTED WORK</div><h2 id="work-heading">Games &amp; projects<span style="color:var(--accent)">.</span></h2></div><div class="section-sub">Ad creatives and store artwork for mobile games, and 3D character rigging in Blender. Select a project to see the full set.</div></div>
+<div class="work-grid">
+<a class="work-card" data-case="candy-ball-run" href="#work/candy-ball-run" aria-label="Open Candy Ball Run project">
+  <div class="wc-media"><video muted loop playsinline preload="none" poster="assets/web/candy-ball-run/cnd-062-poster.jpg" data-src="assets/web/candy-ball-run/preview.mp4" aria-hidden="true"></video><span class="wc-glare" aria-hidden="true"></span></div>
+  <div class="wc-top"><span class="wc-index">01</span><span class="wc-chip">MOBILE GAME</span></div>
+  <div class="wc-body"><h3>Candy Ball Run</h3><p>3 video creatives · 3 store artworks</p><span class="wc-cta">VIEW PROJECT <span aria-hidden="true">→</span></span></div>
+</a>
+<a class="work-card" data-case="fast-ball-jump" href="#work/fast-ball-jump" aria-label="Open Fast Ball Jump project">
+  <div class="wc-media"><video muted loop playsinline preload="none" poster="assets/web/fast-ball-jump/sbj-015-poster.jpg" data-src="assets/web/fast-ball-jump/preview.mp4" aria-hidden="true"></video><span class="wc-glare" aria-hidden="true"></span></div>
+  <div class="wc-top"><span class="wc-index">02</span><span class="wc-chip">MOBILE GAME</span></div>
+  <div class="wc-body"><h3>Fast Ball Jump</h3><p>2 video creatives</p><span class="wc-cta">VIEW PROJECT <span aria-hidden="true">→</span></span></div>
+</a>
+<a class="work-card" data-case="character-rig" href="#work/character-rig" aria-label="Open Sports Player character rig project">
+  <div class="wc-media"><video muted loop playsinline preload="none" poster="assets/rig/showreel-poster.jpg" data-src="assets/rig/sports-rig-showreel-720p.mp4" aria-hidden="true"></video><span class="wc-glare" aria-hidden="true"></span></div>
+  <div class="wc-top"><span class="wc-index">03</span><span class="wc-chip">3D RIGGING</span></div>
+  <div class="wc-body"><h3>Sports Player Rig</h3><p>Body &amp; facial rig · Blender</p><span class="wc-cta">VIEW PROJECT <span aria-hidden="true">→</span></span></div>
+</a>
 </div>
-<article class="game-project" aria-labelledby="fast-ball-jump-title">
-  <div class="game-project-header">
-    <div>
-      <div class="eyebrow">Mobile game creatives</div>
-      <h3 id="fast-ball-jump-title">Fast Ball Jump</h3>
-      <p>Two promotional videos I created for the mobile game.</p>
-    </div>
-    <a class="primary-btn" href="https://play.google.com/store/apps/details?id=com.garena.ball.run.goingball.ironball.rollingball&amp;hl=en" target="_blank" rel="noopener noreferrer">View on Google Play <span aria-hidden="true">&#8599;</span></a>
-  </div>
-  <div class="game-clips">
-    <figure>
-      <video controls playsinline preload="metadata" aria-labelledby="sbj-015">
-        <source src="assets/fast-ball-jump/SBJ_015.mp4" type="video/mp4">
-        <a href="assets/fast-ball-jump/SBJ_015.mp4">Open SBJ 015</a>
-      </video>
-      <figcaption id="sbj-015">SBJ 015</figcaption>
-    </figure>
-    <figure>
-      <video controls playsinline preload="metadata" aria-labelledby="sbj-021">
-        <source src="assets/fast-ball-jump/SBJ_021.mp4" type="video/mp4">
-        <a href="assets/fast-ball-jump/SBJ_021.mp4">Open SBJ 021</a>
-      </video>
-      <figcaption id="sbj-021">SBJ 021</figcaption>
-    </figure>
-  </div>
-</article>
-<article class="game-project" aria-labelledby="candy-ball-run-title">
-  <div class="game-project-header">
-    <div>
-      <div class="eyebrow">Mobile game creatives</div>
-      <h3 id="candy-ball-run-title">Candy Ball Run</h3>
-      <p>Promotional videos and store artwork I created for Candy Ball Run.</p>
-    </div>
-    <a class="primary-btn" href="https://play.google.com/store/apps/details?id=com.candy.ball.run.games.arena&amp;hl=en" target="_blank" rel="noopener noreferrer">View on Google Play <span aria-hidden="true">&#8599;</span></a>
-  </div>
-  <h4>Video creatives</h4>
-  <div class="game-clips game-clips-three">
-    <figure>
-      <video controls playsinline preload="metadata" aria-labelledby="cnd-060">
-        <source src="assets/candy-ball-run/CND_060.mp4" type="video/mp4">
-        <a href="assets/candy-ball-run/CND_060.mp4">Open creative 060</a>
-      </video>
-      <figcaption id="cnd-060">Creative 060</figcaption>
-    </figure>
-    <figure>
-      <video controls playsinline preload="metadata" aria-labelledby="cnd-062">
-        <source src="assets/candy-ball-run/CND_062.mp4" type="video/mp4">
-        <a href="assets/candy-ball-run/CND_062.mp4">Open creative 062</a>
-      </video>
-      <figcaption id="cnd-062">Creative 062</figcaption>
-    </figure>
-    <figure>
-      <video controls playsinline preload="metadata" aria-labelledby="cnd-075">
-        <source src="assets/candy-ball-run/CND_075.mp4" type="video/mp4">
-        <a href="assets/candy-ball-run/CND_075.mp4">Open creative 075</a>
-      </video>
-      <figcaption id="cnd-075">Creative 075</figcaption>
-    </figure>
-  </div>
-  <h4>Screenshots &amp; artwork</h4>
-  <div class="game-clips game-clips-three game-artwork">
-    <figure>
-      <a href="assets/candy-ball-run/rise-to-victory.png"><img src="assets/candy-ball-run/rise-to-victory.png" width="1080" height="1920" alt="Rise to Victory artwork with a crowned ball on a winners' podium" loading="lazy" decoding="async"></a>
-      <figcaption>Rise to Victory</figcaption>
-    </figure>
-    <figure>
-      <a href="assets/candy-ball-run/conquer-the-hurdles.png"><img src="assets/candy-ball-run/conquer-the-hurdles.png" width="1080" height="1920" alt="Conquer the Hurdles artwork with colorful balls navigating an obstacle course" loading="lazy" decoding="async"></a>
-      <figcaption>Conquer the Hurdles</figcaption>
-    </figure>
-    <figure>
-      <a href="assets/candy-ball-run/candy-track.png"><img src="assets/candy-ball-run/candy-track.png" width="512" height="512" alt="Blue candy ball on a pink track with coins and a doughnut arch" loading="lazy" decoding="async"></a>
-      <figcaption>Candy Track</figcaption>
-    </figure>
-  </div>
-</article>
+<template id="case-candy-ball-run">
+  <header class="case-head"><div class="eyebrow">MOBILE GAME · AD CREATIVES &amp; STORE ARTWORK</div><h2>Candy Ball Run<span class="dot-accent">.</span></h2><p class="case-lead">Promotional video creatives and store artwork created for the mobile game Candy Ball Run.</p>
+    <dl class="case-facts"><div><dt>Role</dt><dd>CGI Artist</dd></div><div><dt>Deliverables</dt><dd>3 video creatives · 3 artworks</dd></div><div><dt>Store</dt><dd>Google Play</dd></div></dl>
+    <a class="primary-btn" href="https://play.google.com/store/apps/details?id=com.candy.ball.run.games.arena&amp;hl=en" target="_blank" rel="noopener noreferrer">View on Google Play <span aria-hidden="true">↗</span></a></header>
+  <section class="case-block"><h3 class="case-title"><span>01</span> Video creatives</h3>
+    <div class="phones">
+      <figure class="phone square"><video controls playsinline preload="none" poster="assets/web/candy-ball-run/cnd-060-poster.jpg"><source src="assets/web/candy-ball-run/cnd-060.mp4" type="video/mp4"/></video><figcaption>Creative 060 · 1:1</figcaption></figure>
+      <figure class="phone"><video controls playsinline preload="none" poster="assets/web/candy-ball-run/cnd-062-poster.jpg"><source src="assets/web/candy-ball-run/cnd-062.mp4" type="video/mp4"/></video><figcaption>Creative 062 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls playsinline preload="none" poster="assets/web/candy-ball-run/cnd-075-poster.jpg"><source src="assets/web/candy-ball-run/cnd-075.mp4" type="video/mp4"/></video><figcaption>Creative 075 · 9:16</figcaption></figure>
+    </div></section>
+  <section class="case-block"><h3 class="case-title"><span>02</span> Store artwork</h3>
+    <div class="art-grid">
+      <figure><img src="assets/web/candy-ball-run/rise-to-victory.jpg" width="900" height="1600" loading="lazy" decoding="async" alt="Rise to Victory artwork with a crowned ball on a winners' podium"/><figcaption>Rise to Victory</figcaption></figure>
+      <figure><img src="assets/web/candy-ball-run/conquer-the-hurdles.jpg" width="900" height="1600" loading="lazy" decoding="async" alt="Conquer the Hurdles artwork with colourful balls on an obstacle course"/><figcaption>Conquer the Hurdles</figcaption></figure>
+      <figure class="art-square"><img src="assets/web/candy-ball-run/candy-track.jpg" width="512" height="512" loading="lazy" decoding="async" alt="Blue candy ball on a pink track with coins and a doughnut arch"/><figcaption>Candy Track</figcaption></figure>
+    </div></section>
+</template>
+<template id="case-fast-ball-jump">
+  <header class="case-head"><div class="eyebrow">MOBILE GAME · AD CREATIVES</div><h2>Fast Ball Jump<span class="dot-accent">.</span></h2><p class="case-lead">Promotional video creatives created for the mobile game Fast Ball Jump.</p>
+    <dl class="case-facts"><div><dt>Role</dt><dd>CGI Artist</dd></div><div><dt>Deliverables</dt><dd>2 video creatives</dd></div><div><dt>Store</dt><dd>Google Play</dd></div></dl>
+    <a class="primary-btn" href="https://play.google.com/store/apps/details?id=com.garena.ball.run.goingball.ironball.rollingball&amp;hl=en" target="_blank" rel="noopener noreferrer">View on Google Play <span aria-hidden="true">↗</span></a></header>
+  <section class="case-block"><h3 class="case-title"><span>01</span> Video creatives</h3>
+    <div class="phones phones-two">
+      <figure class="phone"><video controls playsinline preload="none" poster="assets/web/fast-ball-jump/sbj-015-poster.jpg"><source src="assets/web/fast-ball-jump/sbj-015.mp4" type="video/mp4"/></video><figcaption>Creative 015 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls playsinline preload="none" poster="assets/web/fast-ball-jump/sbj-021-poster.jpg"><source src="assets/web/fast-ball-jump/sbj-021.mp4" type="video/mp4"/></video><figcaption>Creative 021 · 9:16</figcaption></figure>
+    </div></section>
+</template>
+<template id="case-character-rig">
+  <header class="case-head"><div class="eyebrow">3D CHARACTER RIGGING · BLENDER</div><h2>Sports Player Rig<span class="dot-accent">.</span></h2><p class="case-lead">A full body and facial control rig for a stylised sports game character, built so animators can pose quickly and the mesh holds up in motion.</p>
+    <dl class="case-facts"><div><dt>Software</dt><dd>Blender</dd></div><div><dt>Rig</dt><dd>Body &amp; face</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl></header>
+  <section class="case-block"><h3 class="case-title"><span>01</span> Rig showreel</h3>
+    <figure class="reel"><video controls playsinline preload="none" poster="assets/rig/showreel-poster.jpg"><source src="assets/rig/sports-rig-showreel-720p.mp4" type="video/mp4"/></video></figure></section>
+  <section class="case-block"><h3 class="case-title"><span>02</span> What's in the rig</h3>
+    <ul class="rig-list"><li><b>IK legs</b> with knee pole targets and heel, ball &amp; toe foot roll</li><li><b>FK arms</b> with an upper-arm twist control and 3 joints on every finger</li><li><b>Hips, spine &amp; chest</b> controls, plus a 3-bone ponytail chain</li><li><b>Facial rig</b> with blinking eyelids, brows and lip-corner controls</li><li><b>Opening jaw</b> with modelled teeth, gums and a 2-bone tongue</li><li><b>Clean weights</b> so the clothing moves properly with the body</li></ul></section>
+  <section class="case-block"><h3 class="case-title"><span>03</span> Breakdown</h3>
+    <div class="shot-grid">
+      <figure><img src="assets/rig/facial-rig.jpg" loading="lazy" decoding="async" alt="Face with rig controls and the jaw open showing teeth and tongue"/><figcaption>Facial rig</figcaption></figure>
+      <figure><img src="assets/rig/ik-legs.jpg" loading="lazy" decoding="async" alt="Character crouching with leg IK and knee pole controls"/><figcaption>IK legs &amp; knee control</figcaption></figure>
+      <figure><img src="assets/rig/hand-fingers.jpg" loading="lazy" decoding="async" alt="Curled hand with finger controls"/><figcaption>Hand &amp; fingers</figcaption></figure>
+      <figure><img src="assets/rig/final-character.jpg" loading="lazy" decoding="async" alt="Final sports character render with controls hidden"/><figcaption>Final character</figcaption></figure>
+    </div></section>
+</template>
 </section>
+<div aria-hidden="true" aria-labelledby="case-label" aria-modal="true" class="case" id="case" role="dialog"><span class="sr-only" id="case-label">Project details</span><div class="case-bar"><span class="case-crumb">WORK <span aria-hidden="true">/</span> <b id="case-name"></b></span><button class="case-close" type="button" aria-label="Close project">CLOSE <span aria-hidden="true">✕</span></button></div><div class="case-scroll"><div class="case-inner wrap" id="case-content"></div></div></div>
 <section aria-label="How I work" class="wrap approach"><div class="approach-head"><div class="eyebrow">02 / HOW I WORK</div><h2>From game<br/>to <em>store.</em></h2><p>A mobile game creative has one job: make someone stop scrolling. I start from the game itself, keep every frame on-brand, and deliver to each platform&#39;s specs.</p></div><div class="approach-grid"><div class="approach-item"><span class="approach-num">01 — UNDERSTAND</span><div class="approach-icon">✳</div><h3>Know the game</h3><p>Play the game, understand its audience, and pick the moments worth showing.</p></div><div class="approach-item"><span class="approach-num">02 — CREATE</span><div class="approach-icon">◈</div><h3>Build the visuals</h3><p>Create CGI scenes, characters and rigs in Blender, then edit and polish in After Effects, Premiere Pro and Photoshop.</p></div><div class="approach-item"><span class="approach-num">03 — DELIVER</span><div class="approach-icon">↗</div><h3>Ship to every platform</h3><p>Export creatives and store assets in the formats and sizes that Mintegral, Google Ads, Google Play and the App Store need.</p></div></div></section>
 <section class="wrap about" id="about"><div><div class="eyebrow">03 / ABOUT ME</div><h2>Games, CGI<br/><em>&amp; rigging.</em></h2><p>I'm Aamir Mazhar, a CGI artist from Multan, Pakistan. Since 2021 I've worked at Topedge Technologies, creating ad creatives for mobile games on Mintegral and Google Ads, and store listings for the Google Play Store and Apple App Store.</p><p>I also build 3D character rigs in Blender, with clean controls for animators and deformation that holds up in motion. My background is in graphic design and social media, and I hold a BS in Information Technology.</p><div class="eyebrow" id="expertise" style="margin-top:37px">SKILLS</div><div class="skills"><span class="skill">3D MODEL RIGGING</span><span class="skill">MOBILE GAME AD CREATIVES</span><span class="skill">STORE LISTINGS</span><span class="skill">MINTEGRAL &amp; GOOGLE ADS</span><span class="skill">SOCIAL MEDIA DESIGN</span></div><div class="eyebrow" style="margin-top:28px">TOOLS</div><div class="skills"><span class="skill">BLENDER</span><span class="skill">UNITY</span><span class="skill">PHOTOSHOP</span><span class="skill">ILLUSTRATOR</span><span class="skill">AFTER EFFECTS</span><span class="skill">PREMIERE PRO</span></div></div><div aria-label="Second abstract silver sculptural CGI-inspired artwork" class="about-art" role="img"><span class="about-count">FIG. / 002</span><span class="about-caption">SHAPES BEYOND THE EXPECTED.</span></div></section>
 <section aria-labelledby="experience-heading" class="wrap section experience" id="experience"><div class="section-top"><div><div class="eyebrow">04 / EXPERIENCE &amp; EDUCATION</div><h2 id="experience-heading">Experience<span style="color:var(--accent)">.</span></h2></div><div class="section-sub">Five years of CGI for mobile games, built on a background in graphic design.</div></div><div class="xp-list"><article class="xp-item"><div class="xp-when">2021 — PRESENT</div><div class="xp-body"><h3>CGI Artist</h3><div class="xp-org">Topedge Technologies</div><ul><li>Create ad creatives for mobile games on platforms including Mintegral and Google Ads.</li><li>Produce store listings for mobile games on the Google Play Store and Apple App Store.</li><li>Use CGI visuals to help games stand out and attract more players.</li></ul></div></article><article class="xp-item"><div class="xp-when">2018</div><div class="xp-body"><h3>Graphic Designer</h3><div class="xp-org">KT Squares</div><ul><li>Designed social media posts and visuals alongside university studies.</li><li>Managed Facebook pages and engaged with audiences to grow brand reach.</li></ul></div></article></div><h3 class="xp-group">Education</h3><div class="xp-list"><article class="xp-item"><div class="xp-when">2015 — 2019</div><div class="xp-body"><h3>BS in Information Technology</h3><div class="xp-org">Superior Group of Colleges, Lahore</div></div></article></div></section>
@@ -430,6 +501,80 @@
   addEventListener('scroll',()=>{if(!scrollPending){scrollPending=true;requestAnimationFrame(updateProgress)}},{passive:true});
   addEventListener('resize',updateProgress,{passive:true});updateProgress();
 
+
+  // V6: work cards, project case panel and motion
+  (function(){
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const fine=window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const cards=[...document.querySelectorAll('.work-card')];
+
+    // Staggered entrance + lazy card previews (play only while visible).
+    cards.forEach((c,i)=>c.style.setProperty('--i',i%3));
+    const io='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{
+      const card=e.target,v=card.querySelector('video');
+      if(e.isIntersecting){card.classList.add('in');if(v&&!reduced){if(!v.src&&v.dataset.src)v.src=v.dataset.src;v.play().catch(()=>{})}}
+      else if(v)v.pause();
+    }),{threshold:.25}):null;
+    cards.forEach(c=>io?io.observe(c):c.classList.add('in'));
+
+    // Pointer tilt + glare on desktop.
+    if(fine&&!reduced)cards.forEach(card=>{
+      card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect();const x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+        card.style.setProperty('--ry',`${(x-.5)*9}deg`);card.style.setProperty('--rx',`${(.5-y)*9}deg`);
+        card.style.setProperty('--gx',`${x*100}%`);card.style.setProperty('--gy',`${y*100}%`)});
+      card.addEventListener('pointerleave',()=>{['--rx','--ry','--gx','--gy'].forEach(p=>card.style.removeProperty(p))});
+    });
+
+    // Ticker becomes a seamless marquee.
+    const ticker=document.querySelector('.ticker');
+    if(ticker&&!reduced){const items=[...ticker.children].filter(s=>!/SCROLL TO DISCOVER/.test(s.textContent));
+      const track=document.createElement('div');track.className='ticker-track';
+      for(let k=0;k<4;k++)items.forEach(s=>track.appendChild(s.cloneNode(true)));
+      ticker.replaceChildren(track);ticker.classList.add('marquee');}
+
+    // Project case panel.
+    const caseEl=document.getElementById('case');if(!caseEl)return;
+    const content=document.getElementById('case-content'),nameEl=document.getElementById('case-name'),closeBtn=caseEl.querySelector('.case-close'),scroller=caseEl.querySelector('.case-scroll');
+    let lastCard=null;
+    const ease='cubic-bezier(.22,1,.36,1)';
+    const rectClip=r=>`inset(${r.top}px ${innerWidth-r.right}px ${innerHeight-r.bottom}px ${r.left}px round 18px)`;
+    function openCase(id,card,push){
+      const tpl=document.getElementById('case-'+id);if(!tpl)return false;
+      content.replaceChildren(tpl.content.cloneNode(true));
+      nameEl.textContent=(tpl.content.querySelector('h2').firstChild.textContent||'').toUpperCase();
+      lastCard=card||document.querySelector(`.work-card[data-case="${id}"]`);
+      cards.forEach(c=>{const v=c.querySelector('video');if(v)v.pause()});
+      caseEl.classList.add('open');caseEl.setAttribute('aria-hidden','false');document.body.classList.add('case-open');scroller.scrollTop=0;
+      if(card&&!reduced&&caseEl.animate){const a=caseEl.animate([{clipPath:rectClip(card.getBoundingClientRect())},{clipPath:'inset(0px 0px 0px 0px round 0px)'}],{duration:760,easing:ease});
+        setTimeout(()=>{if(a.playState!=='finished')a.cancel()},900)}
+      content.querySelectorAll('video').forEach(v=>v.addEventListener('play',()=>content.querySelectorAll('video').forEach(o=>{if(o!==v)o.pause()})));
+      if(push)history.pushState({case:id},'','#work/'+id);
+      closeBtn.focus({preventScroll:true});return true;
+    }
+    function finishClose(){caseEl.classList.remove('open');caseEl.setAttribute('aria-hidden','true');document.body.classList.remove('case-open');content.replaceChildren();
+      if(lastCard){lastCard.focus({preventScroll:true});const v=lastCard.querySelector('video');if(v&&v.src&&!reduced)v.play().catch(()=>{})}}
+    function closeCase(){
+      if(!caseEl.classList.contains('open'))return;
+      content.querySelectorAll('video').forEach(v=>v.pause());
+      let done=false;const finish=()=>{if(done)return;done=true;finishClose()};
+      if(lastCard&&!reduced&&caseEl.animate){const a=caseEl.animate([{clipPath:'inset(0px 0px 0px 0px round 0px)'},{clipPath:rectClip(lastCard.getBoundingClientRect())}],{duration:520,easing:'cubic-bezier(.65,0,.35,1)',fill:'forwards'});
+        a.onfinish=()=>{finish();a.cancel()};setTimeout(()=>{finish();a.cancel()},650)}
+      else finish();
+    }
+    function requestClose(){if(history.state&&history.state.case)history.back();else{closeCase();history.replaceState(null,'','#work')}}
+    cards.forEach(card=>card.addEventListener('click',e=>{e.preventDefault();openCase(card.dataset.case,card,true)}));
+    closeBtn.addEventListener('click',requestClose);
+    addEventListener('popstate',()=>{const m=location.hash.match(/^#work\/([\w-]+)$/);if(m){if(!caseEl.classList.contains('open'))openCase(m[1],null,false)}else closeCase()});
+    document.addEventListener('keydown',e=>{
+      if(!caseEl.classList.contains('open'))return;
+      if(e.key==='Escape'){e.preventDefault();requestClose();return}
+      if(e.key==='Tab'){const f=[...caseEl.querySelectorAll('a[href],button,video[controls]')].filter(x=>x.offsetParent!==null);if(!f.length)return;
+        const first=f[0],last=f[f.length-1];
+        if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}
+    });
+    const deep=location.hash.match(/^#work\/([\w-]+)$/);
+    if(deep&&openCase(deep[1],null,false))history.replaceState({case:deep[1]},'',location.hash);
+  })();
 </script>
 </body>
 </html>
