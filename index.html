@@ -154,6 +154,10 @@ figcaption{color:var(--muted);font-size:13px;text-align:center;margin-top:10px}
 .art-grid img,.shot-grid img{width:100%;border-radius:18px;border:1px solid var(--line);background:#111}
 .shot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .shot-grid img{aspect-ratio:16/10;object-fit:cover}
+.shot-grid figure.wide{grid-column:1/-1}
+.shot-grid figure.wide img{aspect-ratio:auto;height:auto}
+.project-head{border-color:rgba(217,255,112,.35)}
+.project-head .section-title{font-size:clamp(24px,3.4vw,34px)}
 .rig-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .rig-list li{padding:14px 16px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.02);color:#c9c8cc;font-size:14px}
 .rig-list b{color:var(--text)}
@@ -277,7 +281,7 @@ img[width][height]{height:auto}
   <div class="card">
     <div class="tiles">
       <a class="tile" href="#video-ads" style="--i:0"><div class="thumb"><img alt="" decoding="async" loading="lazy" src="assets/web/candy-ball-run/cnd-062-poster.jpg"/><video aria-hidden="true" data-src="assets/web/candy-ball-run/preview.mp4" loop muted playsinline preload="none"></video><span class="tag">34 CREATIVES</span><span class="go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><h3>Video Ads</h3><p>Mobile game ad creatives</p></a>
-      <a class="tile" href="#3d-rigging" style="--i:1"><div class="thumb"><img alt="" decoding="async" loading="lazy" src="assets/rig/final-character.jpg"/><video aria-hidden="true" data-src="assets/rig/sports-rig-showreel-1080p.mp4" loop muted playsinline preload="none"></video><span class="tag">BLENDER</span><span class="go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><h3>3D Rigging</h3><p>Body &amp; facial character rig</p></a>
+      <a class="tile" href="#3d-rigging" style="--i:1"><div class="thumb"><img alt="" decoding="async" loading="lazy" src="assets/rig/final-character.jpg"/><video aria-hidden="true" data-src="assets/rig/sports-rig-showreel-1080p.mp4" loop muted playsinline preload="none"></video><span class="tag">2 RIGS</span><span class="go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><h3>3D Rigging</h3><p>Biped &amp; quadruped character rigs</p></a>
       <a class="tile" href="#store-listings" style="--i:2"><div class="thumb"><img alt="" decoding="async" loading="lazy" src="assets/candy-ball-run/rise-to-victory.png"/><span class="tag">GOOGLE PLAY</span><span class="go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><h3>Store Listings</h3><p>Store artwork for mobile games</p></a>
     </div>
   </div>
@@ -372,8 +376,13 @@ img[width][height]{height:auto}
   <div class="card case-head">
     <div class="eyebrow">Section 02 · 3D character rigging · Blender</div>
     <h2 id="rig-title" tabindex="-1">3D Rigging<span class="dot">.</span></h2>
-    <p>Sports Player Rig: a full body and facial control rig for a stylised sports game character, built so animators can pose quickly and the mesh holds up in motion.</p>
-    <dl class="facts"><div><dt>Software</dt><dd>Blender</dd></div><div><dt>Rig</dt><dd>Body &amp; face</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl>
+    <p>Control rigs built so animators can pose quickly and the mesh holds up in motion: a biped sports character with a full facial rig, and a quadruped horse with a looping gallop.</p>
+    <dl class="facts"><div><dt>Software</dt><dd>Blender</dd></div><div><dt>Rigs</dt><dd>Biped · Quadruped</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl>
+  </div>
+  <div class="card project-head">
+    <div class="eyebrow">Project 01 · Biped</div>
+    <h3 class="section-title">Sports Player Rig</h3>
+    <span class="label">Full body and facial control rig for a stylised sports game character</span>
   </div>
   <div class="card">
     <h3 class="media-title">Rig showreel · 2026</h3>
@@ -392,6 +401,31 @@ img[width][height]{height:auto}
       <figure><img alt="Character crouching with leg IK and knee pole controls" decoding="async" loading="lazy" src="assets/rig/ik-legs.jpg"/><figcaption>IK legs &amp; knee control</figcaption></figure>
       <figure><img alt="Curled hand with finger controls" decoding="async" loading="lazy" src="assets/rig/hand-fingers.jpg"/><figcaption>Hand &amp; fingers</figcaption></figure>
       <figure><img alt="Final sports character render with controls hidden" decoding="async" loading="lazy" src="assets/rig/final-character.jpg"/><figcaption>Final character</figcaption></figure>
+    </div>
+  </div>
+  <div class="card project-head" id="horse-rig">
+    <div class="eyebrow">Project 02 · Quadruped</div>
+    <h3 class="section-title">Horse Rig</h3>
+    <span class="label">Quadruped control rig with a seamless gallop cycle</span>
+  </div>
+  <div class="card">
+    <h3 class="media-title">Horse rig showreel · 2026</h3>
+    <div class="reel"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/rig/horse/horse-rig-poster.jpg" preload="none"><source src="assets/rig/horse/horse-rig-showreel-1080p.mp4" type="video/mp4"/></video></div>
+  </div>
+  <div class="card">
+    <h3 class="section-title">What's in the rig</h3>
+    <span class="label">Controls, deformation and animation</span>
+    <ul class="rig-list"><li><b>IK on all four legs</b> with hoof controls and knee &amp; hock pole targets</li><li><b>4-bone spine and 2-bone neck</b> with head and ear controls</li><li><b>4-bone tail</b> animated with overlapping follow-through</li><li><b>Colour-coded controls</b>: left in blue, right in red, centre in yellow</li><li><b>Game-ready weights</b>: smoothed joints, normalised, max 4 bones per vertex</li><li><b>Seamless gallop</b>: a 54-frame loop with grounded hooves</li></ul>
+  </div>
+  <div class="card">
+    <h3 class="section-title">Breakdown</h3>
+    <span class="label">Key parts of the rig</span>
+    <div class="shot-grid">
+      <figure><img alt="Horse with colour-coded rig controls, three-quarter view" decoding="async" loading="lazy" src="assets/rig/horse/controls.jpg"/><figcaption>Control layout</figcaption></figure>
+      <figure><img alt="Horse legs with IK hoof controls and pole targets selected" decoding="async" loading="lazy" src="assets/rig/horse/leg-ik.jpg"/><figcaption>Leg IK &amp; pole targets</figcaption></figure>
+      <figure><img alt="Horse spine, neck and head controls selected" decoding="async" loading="lazy" src="assets/rig/horse/spine-neck-head.jpg"/><figcaption>Spine, neck &amp; head</figcaption></figure>
+      <figure><img alt="Horse tail controls from behind" decoding="async" loading="lazy" src="assets/rig/horse/tail.jpg"/><figcaption>Tail chain</figcaption></figure>
+      <figure class="wide"><img alt="Galloping horse legs before and after the weight clean-up" decoding="async" loading="lazy" src="assets/rig/horse/weights-before-after.jpg"/><figcaption>Weight clean-up: smoother knees and hocks, no belly pull</figcaption></figure>
     </div>
   </div>
   <div class="next"><a class="chip" href="#video-ads">← Video Ads</a><a class="chip" href="#store-listings">Next: Store Listings →</a></div>
