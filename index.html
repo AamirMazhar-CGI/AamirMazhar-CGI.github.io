@@ -166,9 +166,8 @@ figcaption{color:var(--muted);font-size:13px;text-align:center;margin-top:10px}
 /* About */
 .about-text p{color:#c9c8cc;margin:0 0 14px}
 .about-text p:last-child{margin:0}
-.about-intro{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:center}
-.portrait{width:150px;height:150px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);box-shadow:0 0 0 6px rgba(217,255,112,.08)}
-@media (max-width:640px){.about-intro{grid-template-columns:1fr;justify-items:center;text-align:center}.portrait{width:120px;height:120px}}
+.portrait{display:block;margin:14px auto 6px;width:150px;height:150px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);box-shadow:0 0 0 6px rgba(217,255,112,.08)}
+@media (max-width:640px){.portrait{width:120px;height:120px}}
 .timeline{display:grid;gap:12px}
 .xp{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:18px 20px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.02)}
 .xp .when{font:600 12px/1.6 'Space Grotesk',sans-serif;letter-spacing:.1em;color:var(--accent)}
@@ -484,12 +483,10 @@ img[width][height]{height:auto}
 <!-- ABOUT -->
 <section aria-labelledby="about-title" class="page" hidden="" id="page-about">
   <h2 class="page-title" id="about-title" tabindex="-1">About<span class="dot">.</span></h2>
-  <div class="card about-text about-intro">
-    <img alt="Portrait of Aamir Mazhar" class="portrait" decoding="async" height="224" src="assets/aamir-mazhar.jpg" width="224"/>
-    <div>
+  <img alt="Portrait of Aamir Mazhar" class="portrait" decoding="async" height="224" src="assets/aamir-mazhar.jpg" width="224"/>
+  <div class="card about-text">
     <p>I'm Aamir Mazhar, a CGI artist from Multan, Pakistan. Since 2021 I've worked at Topedge Technologies, creating ad creatives for mobile games on Mintegral and Google Ads, and store listings for the Google Play Store and Apple App Store.</p>
     <p>I also build 3D character rigs in Blender, with clean controls for animators and deformation that holds up in motion. My background is in graphic design and social media, and I hold a BS in Information Technology.</p>
-    </div>
   </div>
   <div class="card">
     <h3 class="section-title">Experience</h3>
