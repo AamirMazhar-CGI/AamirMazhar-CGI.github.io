@@ -166,8 +166,15 @@ figcaption{color:var(--muted);font-size:13px;text-align:center;margin-top:10px}
 /* About */
 .about-text p{color:#c9c8cc;margin:0 0 14px}
 .about-text p:last-child{margin:0}
-.portrait{display:block;margin:14px auto 6px;width:150px;height:150px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);box-shadow:0 0 0 6px rgba(217,255,112,.08)}
-@media (max-width:640px){.portrait{width:120px;height:120px}}
+.about-hero{min-height:calc(100svh - 110px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-bottom:24px}
+.about-hero .page-title{margin-bottom:22px}
+.portrait{display:block;margin:0 auto;width:min(300px,68vw);height:auto;aspect-ratio:1;border-radius:50%;object-fit:cover;border:3px solid var(--accent);box-shadow:0 0 0 10px rgba(217,255,112,.07),0 30px 80px rgba(0,0,0,.55)}
+.hero-name{margin:24px 0 0;font:700 clamp(24px,3.2vw,32px)/1.1 'Space Grotesk',sans-serif;color:var(--text)}
+.hero-role{margin:8px 0 0;font:600 12px/1 'Space Grotesk',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.scroll-hint{margin-top:34px;color:var(--muted);animation:bob 1.8s ease-in-out infinite}
+.scroll-hint .i{width:26px;height:26px}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@media (prefers-reduced-motion:reduce){.scroll-hint{animation:none}}
 .timeline{display:grid;gap:12px}
 .xp{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:18px 20px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.02)}
 .xp .when{font:600 12px/1.6 'Space Grotesk',sans-serif;letter-spacing:.1em;color:var(--accent)}
@@ -482,8 +489,13 @@ img[width][height]{height:auto}
 
 <!-- ABOUT -->
 <section aria-labelledby="about-title" class="page" hidden="" id="page-about">
-  <h2 class="page-title" id="about-title" tabindex="-1">About<span class="dot">.</span></h2>
-  <img alt="Portrait of Aamir Mazhar" class="portrait" decoding="async" height="224" src="assets/aamir-mazhar.jpg" width="224"/>
+  <div class="about-hero">
+    <h2 class="page-title" id="about-title" tabindex="-1">About<span class="dot">.</span></h2>
+    <img alt="Portrait of Aamir Mazhar" class="portrait" decoding="async" height="224" src="assets/aamir-mazhar.jpg" width="224"/>
+    <p class="hero-name">Aamir Mazhar</p>
+    <p class="hero-role">CGI Artist &amp; 3D Rigger</p>
+    <span aria-hidden="true" class="scroll-hint"><svg class="i" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+  </div>
   <div class="card about-text">
     <p>I'm Aamir Mazhar, a CGI artist from Multan, Pakistan. Since 2021 I've worked at Topedge Technologies, creating ad creatives for mobile games on Mintegral and Google Ads, and store listings for the Google Play Store and Apple App Store.</p>
     <p>I also build 3D character rigs in Blender, with clean controls for animators and deformation that holds up in motion. My background is in graphic design and social media, and I hold a BS in Information Technology.</p>
