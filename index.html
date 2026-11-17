@@ -116,7 +116,8 @@ video:-webkit-full-screen{object-fit:contain!important;aspect-ratio:auto!importa
 figcaption{color:var(--muted);font-size:13px;text-align:center;margin-top:10px}
 
 /* Project tiles (portfolio gallery) */
-.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media (max-width:900px){.tiles{grid-template-columns:repeat(2,1fr)}}
 .tile{display:block;text-decoration:none;color:inherit}
 .tile .thumb{position:relative;overflow:hidden;aspect-ratio:1/1;border-radius:18px;border:1px solid var(--line);background:#111;transition:border-color .35s,transform .5s var(--ease),box-shadow .35s}
 .tile img,.tile video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease),opacity .4s}
@@ -167,6 +168,11 @@ figcaption{color:var(--muted);font-size:13px;text-align:center;margin-top:10px}
 .shot-grid figure.wide img{aspect-ratio:auto;height:auto}
 .project-head{border-color:rgba(217,255,112,.35)}
 .project-head .section-title{font-size:clamp(24px,3.4vw,34px)}
+.ui-hero img{width:100%;height:auto;border-radius:18px;border:1px solid var(--line);background:#111}
+.ui-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-items:start}
+.ui-grid img{width:100%;height:auto;border-radius:16px;border:1px solid var(--line);background:#111}
+.ui-grid figure:last-child:nth-child(odd){grid-column:1/-1;width:calc(50% - 8px);justify-self:center}
+@media (max-width:640px){.ui-grid{grid-template-columns:1fr}.ui-grid figure:last-child:nth-child(odd){width:100%}}
 .rig-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .rig-list li{padding:14px 16px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.02);color:#c9c8cc;font-size:14px}
 .rig-list b{color:var(--text)}
@@ -292,12 +298,13 @@ img[width][height]{height:auto}
 <!-- PORTFOLIO HUB -->
 <section aria-labelledby="portfolio-title" class="page" hidden="" id="page-portfolio">
   <h2 class="page-title" id="portfolio-title" tabindex="-1">Portfolio<span class="dot">.</span></h2>
-  <p class="lead">Three areas of work. Pick one to see everything in it.</p>
+  <p class="lead">Four areas of work. Pick one to see everything in it.</p>
   <div class="card">
     <div class="tiles">
       <a class="tile" href="#video-ads" style="--i:0"><div class="thumb"><img alt="" decoding="async" loading="lazy" src="assets/web/candy-ball-run/cnd-062-poster.jpg"/><video aria-hidden="true" data-src="assets/web/candy-ball-run/preview.mp4" loop muted playsinline preload="none"></video><span class="tag">56 CREATIVES</span><span class="go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><h3>Video Ads</h3><p>Mobile game ad creatives</p></a>
       <a class="tile" href="#3d-rigging" style="--i:1"><div class="thumb"><img alt="" decoding="async" loading="lazy" src="assets/rig/final-character.jpg"/><video aria-hidden="true" data-src="assets/rig/sports-rig-showreel-1080p.mp4" loop muted playsinline preload="none"></video><span class="tag">2 RIGS</span><span class="go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><h3>3D Rigging</h3><p>Biped &amp; quadruped character rigs</p></a>
       <a class="tile" href="#store-listings" style="--i:2"><div class="thumb"><img alt="" decoding="async" loading="lazy" src="assets/candy-ball-run/rise-to-victory.png"/><span class="tag">GOOGLE PLAY</span><span class="go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><h3>Store Listings</h3><p>Store artwork for mobile games</p></a>
+      <a class="tile" href="#ui-ux" style="--i:3"><div class="thumb"><img alt="" decoding="async" loading="lazy" src="assets/ui-ux/elite-counter-attack/main-menu.webp"/><span class="tag">20 SCREENS</span><span class="go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><h3>UI / UX</h3><p>Game interface design</p></a>
     </div>
   </div>
 </section>
@@ -547,7 +554,65 @@ img[width][height]{height:auto}
     </div>
     <div class="next" style="margin-top:22px"><a class="btn solid inline" href="https://play.google.com/store/apps/details?id=com.block.shooting.quest.collect.games&amp;hl=en" rel="noopener noreferrer" target="_blank">View the live listing <svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
   </div>
-  <div class="next"><a class="chip" href="#3d-rigging">← 3D Rigging</a><a class="chip" href="#portfolio">All sections →</a></div>
+  <div class="next"><a class="chip" href="#3d-rigging">← 3D Rigging</a><a class="chip" href="#ui-ux">Next: UI / UX →</a></div>
+</section>
+
+<!-- UI / UX -->
+<section aria-labelledby="ui-title" class="page" hidden="" id="page-ui-ux">
+  <div class="card case-head">
+    <div class="eyebrow">Section 04 · Game UI / UX</div>
+    <h2 id="ui-title" tabindex="-1">UI / UX<span class="dot">.</span></h2>
+    <p>Elite Counter Attack: the full interface for a mobile shooter. Menus, store, mission flow, settings and pop-ups share one dark military look with yellow highlights, so every screen reads as part of the same game.</p>
+    <dl class="facts"><div><dt>Game</dt><dd>Elite Counter Attack</dd></div><div><dt>Platform</dt><dd>Mobile · landscape</dd></div><div><dt>Screens</dt><dd>20</dd></div></dl>
+  </div>
+  <div class="card">
+    <h3 class="media-title">Main menu</h3>
+    <div class="ui-hero"><img alt="Elite Counter Attack main menu with a soldier, profile bar, side buttons and start button" decoding="async" height="1080" src="assets/ui-ux/elite-counter-attack/main-menu.webp" width="1920"/></div>
+  </div>
+  <div class="card">
+    <h3 class="section-title">Main menu &amp; store</h3>
+    <span class="label">Home screen, offers and loadout</span>
+    <div class="ui-grid">
+      <figure><img alt="Limited-time offer pop-up: unlock all guns at 50% off" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/limited-time-offer.webp" width="1920"/><figcaption>Limited-time offer</figcaption></figure>
+      <figure><img alt="Character selection with skins, stats and a buy button" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/character-selection.webp" width="1920"/><figcaption>Character selection</figcaption></figure>
+      <figure><img alt="Gun selection with weapon tabs, stats and price" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/gun-selection.webp" width="1920"/><figcaption>Gun selection</figcaption></figure>
+      <figure><img alt="Change avatar pop-up with a grid of icons" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/change-avatar.webp" width="1920"/><figcaption>Change avatar</figcaption></figure>
+    </div>
+  </div>
+  <div class="card">
+    <h3 class="section-title">Mission flow</h3>
+    <span class="label">From picking a mission to the result screen</span>
+    <div class="ui-grid">
+      <figure><img alt="Mission select map with a briefing card and locked missions" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/mission-select.webp" width="1920"/><figcaption>Mission select</figcaption></figure>
+      <figure><img alt="Mission briefing with a commander card and target marker" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/mission-briefing.webp" width="1920"/><figcaption>Mission briefing</figcaption></figure>
+      <figure><img alt="Pause menu with continue, restart, settings and home" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/paused.webp" width="1920"/><figcaption>Pause menu</figcaption></figure>
+      <figure><img alt="Mission completed screen with ticked tasks" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/mission-completed.webp" width="1920"/><figcaption>Mission completed</figcaption></figure>
+      <figure><img alt="Mission failed screen with restart and home" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/mission-failed.webp" width="1920"/><figcaption>Mission failed</figcaption></figure>
+      <figure><img alt="Intel card for an unknown spy over the night map" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/briefing-intel.webp" width="1920"/><figcaption>Intel card</figcaption></figure>
+    </div>
+  </div>
+  <div class="card">
+    <h3 class="section-title">Settings</h3>
+    <span class="label">Five tabs sharing one layout</span>
+    <div class="ui-grid">
+      <figure><img alt="Settings controls tab with simple and advanced modes" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/settings-controls.png" width="1920"/><figcaption>Controls</figcaption></figure>
+      <figure><img alt="Settings basic tab with toggle switches" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/settings-basic.webp" width="1920"/><figcaption>Basic</figcaption></figure>
+      <figure><img alt="Settings graphics tab with quality and frame rate" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/settings-graphics.webp" width="1920"/><figcaption>Graphics</figcaption></figure>
+      <figure><img alt="Settings sensitivity tab with sliders" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/settings-sensitivity.webp" width="1920"/><figcaption>Sensitivity</figcaption></figure>
+      <figure><img alt="Settings audio tab with volume sliders" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/settings-audio.webp" width="1920"/><figcaption>Audio</figcaption></figure>
+    </div>
+  </div>
+  <div class="card">
+    <h3 class="section-title">Pop-ups</h3>
+    <span class="label">Small dialogs in the same style</span>
+    <div class="ui-grid">
+      <figure><img alt="Player name pop-up with avatar and text field" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/player-name.webp" width="1920"/><figcaption>Player name</figcaption></figure>
+      <figure><img alt="Quit the game confirmation dialog" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/quit-dialog.webp" width="1920"/><figcaption>Quit dialog</figcaption></figure>
+      <figure><img alt="Rate us prompt with yes and later buttons" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/rate-us.webp" width="1920"/><figcaption>Rate us</figcaption></figure>
+      <figure><img alt="Soldiers in a jungle ruin with a helicopter overhead" decoding="async" height="1080" loading="lazy" src="assets/ui-ux/elite-counter-attack/gameplay-jungle.webp" width="1920"/><figcaption>In-game scene</figcaption></figure>
+    </div>
+  </div>
+  <div class="next"><a class="chip" href="#store-listings">← Store Listings</a><a class="chip" href="#portfolio">All sections →</a></div>
 </section>
 
 <!-- ABOUT -->
@@ -619,10 +684,10 @@ img[width][height]{height:auto}
   const pages=[...document.querySelectorAll('.page')];
   const navLinks=[...document.querySelectorAll('[data-nav]')];
   const titles={home:'Aamir Mazhar — CGI Artist & 3D Rigger',portfolio:'Portfolio — Aamir Mazhar','video-ads':'Video Ads — Aamir Mazhar',
-    '3d-rigging':'3D Rigging — Aamir Mazhar','store-listings':'Store Listings — Aamir Mazhar',about:'About — Aamir Mazhar'};
+    '3d-rigging':'3D Rigging — Aamir Mazhar','store-listings':'Store Listings — Aamir Mazhar','ui-ux':'UI / UX — Aamir Mazhar',about:'About — Aamir Mazhar'};
   // Old anchors and project links still land on the right page.
   const alias={'':'home',home:'home',top:'home',contact:'home',portfolio:'portfolio',work:'portfolio','video-ads':'video-ads','3d-rigging':'3d-rigging',
-    'store-listings':'store-listings',reel:'3d-rigging','work/character-rig':'3d-rigging','work/candy-ball-run':'video-ads','work/fast-ball-jump':'video-ads',
+    'store-listings':'store-listings','ui-ux':'ui-ux','ui':'ui-ux',reel:'3d-rigging','work/character-rig':'3d-rigging','work/candy-ball-run':'video-ads','work/fast-ball-jump':'video-ads',
     about:'about',experience:'about',expertise:'about',linkedin:'about'};
 
   function resolve(){
@@ -637,7 +702,7 @@ img[width][height]{height:auto}
       // if the browser pauses animations (background tab, power saving).
       if(on){p.hidden=false;if(!reduced){p.classList.remove('enter');void p.offsetWidth;p.classList.add('enter');clearTimeout(p._t);p._t=setTimeout(()=>p.classList.remove('enter'),1300)}}
     });
-    const section=['video-ads','3d-rigging','store-listings'].includes(id)?'portfolio':id;
+    const section=['video-ads','3d-rigging','store-listings','ui-ux'].includes(id)?'portfolio':id;
     navLinks.forEach(a=>a.dataset.nav===section?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
     document.title=titles[id]||titles.home;
     if(!first){window.scrollTo({top:0,behavior:'instant'});const t=document.querySelector('#page-'+id+' [tabindex="-1"]');if(t)t.focus({preventScroll:true})}
