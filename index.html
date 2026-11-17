@@ -221,8 +221,16 @@ img[width][height]{height:auto}
   .wide-grid{grid-template-columns:1fr}
   .phone.square,.art-grid .art-square{grid-column:1/-1}
   .phone.square video{max-width:360px;margin:0 auto}
-  .tiles .tile:last-child:nth-child(odd){grid-column:1/-1}
-  .tiles .tile:last-child:nth-child(odd) .thumb{aspect-ratio:16/10}
+  /* Portfolio tiles become a list: thumbnail left, title and description right */
+  .tiles{grid-template-columns:1fr;gap:10px}
+  .tile{display:grid;grid-template-columns:88px 1fr 20px;grid-template-rows:1fr auto auto 1fr;column-gap:14px;align-items:center;padding:10px 12px 10px 10px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.02)}
+  .tile .thumb{grid-row:1/-1;width:88px;aspect-ratio:1/1;border-radius:14px}
+  .tile .thumb .tag,.tile .thumb .go{display:none}
+  .tile h3{grid-column:2;grid-row:2;margin:0;text-align:left;font-size:17px}
+  .tile p{grid-column:2;grid-row:3;margin:3px 0 0;text-align:left}
+  .tile::after{content:"";grid-column:3;grid-row:1/-1;width:9px;height:9px;border-top:2px solid var(--accent);border-right:2px solid var(--accent);transform:rotate(45deg)}
+  .tile:hover .thumb,.tile:focus-visible .thumb{transform:none;box-shadow:none}
+  .tile:hover,.tile:focus-visible{border-color:var(--accent)}
   .facts{grid-template-columns:1fr}
   .rig-list,.shot-grid{grid-template-columns:1fr}
   .xp{grid-template-columns:1fr;gap:6px}
