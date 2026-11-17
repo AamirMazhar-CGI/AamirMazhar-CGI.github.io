@@ -149,6 +149,9 @@ figcaption{color:var(--muted);font-size:13px;text-align:center;margin-top:10px}
 .phone.wide video{aspect-ratio:16/9}
 .art-grid.four{grid-template-columns:repeat(4,1fr)}
 .wide-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-items:start;margin-bottom:16px}
+.feature-row{display:grid;grid-template-columns:2.048fr 1fr;gap:16px;align-items:start;margin-bottom:16px}
+.feature-row img{width:100%;height:auto;border-radius:18px;border:1px solid var(--line);background:#111}
+@media (max-width:640px){.feature-row{grid-template-columns:1fr}.feature-row figure:last-child{max-width:200px;margin:0 auto}}
 .wide-grid img{width:100%;height:auto;border-radius:18px;border:1px solid var(--line);background:#111}
 .art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
 .art-grid img,.shot-grid img{width:100%;border-radius:18px;border:1px solid var(--line);background:#111}
@@ -484,6 +487,23 @@ img[width][height]{height:auto}
       <figure><img alt="Farm Puzzle screenshot with shelves standing on grass under a blue sky" decoding="async" height="1920" loading="lazy" src="assets/farm-sort/store/farm-puzzle.webp" width="1080"/><figcaption>Farm Puzzle</figcaption></figure>
       <figure><img alt="Brain Sorting screenshot with sold-out shelf signs" decoding="async" height="1920" loading="lazy" src="assets/farm-sort/store/brain-sorting.webp" width="1080"/><figcaption>Brain Sorting</figcaption></figure>
     </div>
+  </div>
+  <div class="card">
+    <h3 class="section-title">Fruits Stack</h3>
+    <span class="label">Google Play feature graphic, icon and screenshots</span>
+    <div class="feature-row">
+      <figure><img alt="Fruits Stack feature graphic: apples on a runner track beside a stick-figure chef stacking juice cups" decoding="async" height="500" loading="lazy" src="assets/fruits-stack/store/feature-graphic.webp" width="1024"/><figcaption>Feature graphic</figcaption></figure>
+      <figure><img alt="Fruits Stack app icon: a line of apples heading to minus 10 and plus 50 gates" decoding="async" height="512" loading="lazy" src="assets/fruits-stack/store/icon.png" width="512"/><figcaption>App icon</figcaption></figure>
+    </div>
+    <div class="art-grid">
+      <figure><img alt="Fun Math Adventure screenshot with apples heading to plus and minus gates" decoding="async" height="1920" loading="lazy" src="assets/fruits-stack/store/fun-math-adventure.webp" width="1080"/><figcaption>Fun Math Adventure</figcaption></figure>
+      <figure><img alt="Dodge the Cutters screenshot with saw blades on the track" decoding="async" height="1920" loading="lazy" src="assets/fruits-stack/store/dodge-the-cutters.webp" width="1080"/><figcaption>Dodge the Cutters</figcaption></figure>
+      <figure><img alt="Squeeze Apple Juice screenshot with apples entering a juicer" decoding="async" height="1920" loading="lazy" src="assets/fruits-stack/store/squeeze-apple-juice.webp" width="1080"/><figcaption>Squeeze Apple Juice</figcaption></figure>
+      <figure><img alt="Test Your Brain screenshot with multiply and divide gates" decoding="async" height="1920" loading="lazy" src="assets/fruits-stack/store/test-your-brain.webp" width="1080"/><figcaption>Test Your Brain</figcaption></figure>
+      <figure><img alt="Stack the Orders screenshot with a chef balancing a tall stack of juice cups" decoding="async" height="1920" loading="lazy" src="assets/fruits-stack/store/stack-the-orders.webp" width="1080"/><figcaption>Stack the Orders</figcaption></figure>
+      <figure><img alt="Serve Your Customers screenshot of a busy restaurant floor" decoding="async" height="1920" loading="lazy" src="assets/fruits-stack/store/serve-your-customers.webp" width="1080"/><figcaption>Serve Your Customers</figcaption></figure>
+    </div>
+    <div class="next" style="margin-top:22px"><a class="btn solid inline" href="https://play.google.com/store/apps/details?id=com.games.arena.fruit.stack.juice&amp;hl=en" rel="noopener noreferrer" target="_blank">View the live listing <svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
   </div>
   <div class="next"><a class="chip" href="#3d-rigging">← 3D Rigging</a><a class="chip" href="#portfolio">All sections →</a></div>
 </section>
