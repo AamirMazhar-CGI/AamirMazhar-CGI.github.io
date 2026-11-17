@@ -149,9 +149,9 @@ figcaption{color:var(--muted);font-size:13px;text-align:center;margin-top:10px}
 .phone.wide video{aspect-ratio:16/9}
 .art-grid.four{grid-template-columns:repeat(4,1fr)}
 .wide-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-items:start;margin-bottom:16px}
-.feature-row{display:grid;grid-template-columns:2.048fr 1fr;gap:16px;align-items:start;margin-bottom:16px}
-.feature-row img{width:100%;height:auto;border-radius:18px;border:1px solid var(--line);background:#111}
-@media (max-width:640px){.feature-row{grid-template-columns:1fr}.feature-row figure:last-child{max-width:200px;margin:0 auto}}
+.icon-row{display:flex;justify-content:center;margin-bottom:18px}
+.icon-row figure{width:min(220px,50%)}
+.icon-row img{width:100%;height:auto;border-radius:22%;border:1px solid var(--line);background:#111}
 .wide-grid img{width:100%;height:auto;border-radius:18px;border:1px solid var(--line);background:#111}
 .art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
 .art-grid img,.shot-grid img{width:100%;border-radius:18px;border:1px solid var(--line);background:#111}
@@ -490,9 +490,8 @@ img[width][height]{height:auto}
   </div>
   <div class="card">
     <h3 class="section-title">Fruits Stack</h3>
-    <span class="label">Google Play feature graphic, icon and screenshots</span>
-    <div class="feature-row">
-      <figure><img alt="Fruits Stack feature graphic: apples on a runner track beside a stick-figure chef stacking juice cups" decoding="async" height="500" loading="lazy" src="assets/fruits-stack/store/feature-graphic.webp" width="1024"/><figcaption>Feature graphic</figcaption></figure>
+    <span class="label">Google Play icon and screenshots</span>
+    <div class="icon-row">
       <figure><img alt="Fruits Stack app icon: a line of apples heading to minus 10 and plus 50 gates" decoding="async" height="512" loading="lazy" src="assets/fruits-stack/store/icon.png" width="512"/><figcaption>App icon</figcaption></figure>
     </div>
     <div class="art-grid">
