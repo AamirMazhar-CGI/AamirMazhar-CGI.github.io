@@ -145,6 +145,9 @@ figcaption{color:var(--muted);font-size:13px;text-align:center;margin-top:10px}
 .phones.two{grid-template-columns:repeat(2,minmax(0,280px));justify-content:center}
 .phone video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:20px;border:1px solid var(--line);background:#000}
 .phone.square video{aspect-ratio:1/1}
+.phones.centred{display:flex;flex-wrap:wrap;justify-content:center}
+.phones.centred .phone{width:calc((100% - 32px)/3);margin:0}
+@media (max-width:640px){.phones.centred .phone{width:calc((100% - 12px)/2)}}
 .phone.wide{grid-column:1/-1}
 .phone.wide video{aspect-ratio:16/9}
 .art-grid.four{grid-template-columns:repeat(4,1fr)}
@@ -292,7 +295,7 @@ img[width][height]{height:auto}
   <p class="lead">Three areas of work. Pick one to see everything in it.</p>
   <div class="card">
     <div class="tiles">
-      <a class="tile" href="#video-ads" style="--i:0"><div class="thumb"><img alt="" decoding="async" loading="lazy" src="assets/web/candy-ball-run/cnd-062-poster.jpg"/><video aria-hidden="true" data-src="assets/web/candy-ball-run/preview.mp4" loop muted playsinline preload="none"></video><span class="tag">43 CREATIVES</span><span class="go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><h3>Video Ads</h3><p>Mobile game ad creatives</p></a>
+      <a class="tile" href="#video-ads" style="--i:0"><div class="thumb"><img alt="" decoding="async" loading="lazy" src="assets/web/candy-ball-run/cnd-062-poster.jpg"/><video aria-hidden="true" data-src="assets/web/candy-ball-run/preview.mp4" loop muted playsinline preload="none"></video><span class="tag">56 CREATIVES</span><span class="go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><h3>Video Ads</h3><p>Mobile game ad creatives</p></a>
       <a class="tile" href="#3d-rigging" style="--i:1"><div class="thumb"><img alt="" decoding="async" loading="lazy" src="assets/rig/final-character.jpg"/><video aria-hidden="true" data-src="assets/rig/sports-rig-showreel-1080p.mp4" loop muted playsinline preload="none"></video><span class="tag">2 RIGS</span><span class="go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><h3>3D Rigging</h3><p>Biped &amp; quadruped character rigs</p></a>
       <a class="tile" href="#store-listings" style="--i:2"><div class="thumb"><img alt="" decoding="async" loading="lazy" src="assets/candy-ball-run/rise-to-victory.png"/><span class="tag">GOOGLE PLAY</span><span class="go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><h3>Store Listings</h3><p>Store artwork for mobile games</p></a>
     </div>
@@ -309,7 +312,7 @@ img[width][height]{height:auto}
   </div>
   <div class="card">
     <h3 class="section-title">Candy Ball Run</h3>
-    <span class="label">3 creatives · original full-quality exports</span>
+    <span class="label">3 creatives · 9:16 and 1:1</span>
     <div class="phones">
       <figure class="phone square"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/candy-ball-run/cnd-060-poster.jpg" preload="none"><source src="assets/candy-ball-run/CND_060.mp4" type="video/mp4"/></video><figcaption>Creative 060 · 1:1</figcaption></figure>
       <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/candy-ball-run/cnd-062-poster.jpg" preload="none"><source src="assets/candy-ball-run/CND_062.mp4" type="video/mp4"/></video><figcaption>Creative 062 · 9:16</figcaption></figure>
@@ -319,7 +322,7 @@ img[width][height]{height:auto}
   </div>
   <div class="card">
     <h3 class="section-title">Fast Ball Jump</h3>
-    <span class="label">2 creatives · original full-quality exports</span>
+    <span class="label">2 creatives · 9:16</span>
     <div class="phones two">
       <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/fast-ball-jump/sbj-015-poster.jpg" preload="none"><source src="assets/fast-ball-jump/SBJ_015.mp4" type="video/mp4"/></video><figcaption>Creative 015 · 9:16</figcaption></figure>
       <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/fast-ball-jump/sbj-021-poster.jpg" preload="none"><source src="assets/fast-ball-jump/SBJ_021.mp4" type="video/mp4"/></video><figcaption>Creative 021 · 9:16</figcaption></figure>
@@ -328,7 +331,7 @@ img[width][height]{height:auto}
   </div>
   <div class="card">
     <h3 class="section-title">Circus Balls</h3>
-    <span class="label">2 creatives · original full-quality exports</span>
+    <span class="label">2 creatives · 9:16</span>
     <div class="phones two">
       <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/circus-balls/cb-077-poster.jpg" preload="none"><source src="assets/circus-balls/CB_077.mp4" type="video/mp4"/></video><figcaption>Creative 077 · 9:16</figcaption></figure>
       <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/circus-balls/cb-078-poster.jpg" preload="none"><source src="assets/circus-balls/CB_078.mp4" type="video/mp4"/></video><figcaption>Creative 078 · 9:16</figcaption></figure>
@@ -345,6 +348,26 @@ img[width][height]{height:auto}
       <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/farm-sort/fs-084-poster.jpg" preload="none"><source src="assets/farm-sort/FS_084.mp4" type="video/mp4"/></video><figcaption>Creative 084 · 9:16</figcaption></figure>
       <figure class="phone wide"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/farm-sort/fs-050-poster.jpg" preload="none"><source src="assets/farm-sort/FS_050.mp4" type="video/mp4"/></video><figcaption>Creative 050 · 16:9</figcaption></figure>
     </div>
+  </div>
+  <div class="card">
+    <h3 class="section-title">Block Collect: Shooting Quest</h3>
+    <span class="label">13 creatives · 9:16</span>
+    <div class="phones centred">
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/block-collect/bcs-001-poster.jpg" preload="none"><source src="assets/block-collect/BCS_001.mp4" type="video/mp4"/></video><figcaption>Creative 001 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/block-collect/bcs-004-poster.jpg" preload="none"><source src="assets/block-collect/BCS_004.mp4" type="video/mp4"/></video><figcaption>Creative 004 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/block-collect/bcs-008-poster.jpg" preload="none"><source src="assets/block-collect/BCS_008.mp4" type="video/mp4"/></video><figcaption>Creative 008 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/block-collect/bcs-011-poster.jpg" preload="none"><source src="assets/block-collect/BCS_011.mp4" type="video/mp4"/></video><figcaption>Creative 011 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/block-collect/bcs-012-poster.jpg" preload="none"><source src="assets/block-collect/BCS_012.mp4" type="video/mp4"/></video><figcaption>Creative 012 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/block-collect/bcs-018-poster.jpg" preload="none"><source src="assets/block-collect/BCS_018.mp4" type="video/mp4"/></video><figcaption>Creative 018 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/block-collect/bcs-023-poster.jpg" preload="none"><source src="assets/block-collect/BCS_023.mp4" type="video/mp4"/></video><figcaption>Creative 023 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/block-collect/bcs-024-poster.jpg" preload="none"><source src="assets/block-collect/BCS_024.mp4" type="video/mp4"/></video><figcaption>Creative 024 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/block-collect/bcs-025-poster.jpg" preload="none"><source src="assets/block-collect/BCS_025.mp4" type="video/mp4"/></video><figcaption>Creative 025 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/block-collect/bcs-029-poster.jpg" preload="none"><source src="assets/block-collect/BCS_029.mp4" type="video/mp4"/></video><figcaption>Creative 029 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/block-collect/bcs-030-poster.jpg" preload="none"><source src="assets/block-collect/BCS_030.mp4" type="video/mp4"/></video><figcaption>Creative 030 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/block-collect/bcs-032-poster.jpg" preload="none"><source src="assets/block-collect/BCS_032.mp4" type="video/mp4"/></video><figcaption>Creative 032 · 9:16</figcaption></figure>
+      <figure class="phone"><video controls controlslist="nodownload" disablepictureinpicture playsinline poster="assets/web/block-collect/bcs-035-poster.jpg" preload="none"><source src="assets/block-collect/BCS_035.mp4" type="video/mp4"/></video><figcaption>Creative 035 · 9:16</figcaption></figure>
+    </div>
+    <div class="next" style="margin-top:22px"><a class="btn solid inline sm" href="https://play.google.com/store/apps/details?id=com.block.shooting.quest.collect.games&amp;hl=en" rel="noopener noreferrer" target="_blank"><svg class="i fill" viewBox="0 0 24 24"><path d="M4 3.2v17.6c0 .5.5.8.9.6L20 12.6c.4-.3.4-.9 0-1.2L4.9 2.6c-.4-.2-.9.1-.9.6z"/></svg>Block Collect on Google Play <svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
   </div>
   <div class="card">
     <h3 class="section-title">Sky Survival</h3>
