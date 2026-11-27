@@ -80,6 +80,33 @@ main{--my:-9999px;--fade:112px;
 /* Title dots pop in when a page opens */
 .page.enter .page-title .dot,.page.enter .case-head h2 .dot{display:inline-block;animation:pop .6s .45s var(--ease) both}
 @keyframes pop{from{opacity:0;transform:scale(0)}60%{transform:scale(1.5)}to{opacity:1;transform:none}}
+/* Home name: letters rise in one by one (split by JS) */
+.name .ch{display:inline-block;white-space:pre}
+.page.enter .name .ch{animation:letter .8s var(--ease) both;animation-delay:calc(.12s + var(--k)*.045s)}
+@keyframes letter{from{opacity:0;transform:translateY(.55em) rotate(10deg);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+/* Skills marquee */
+.marquee{overflow:hidden;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mq-track{display:flex;width:max-content;animation:mq 32s linear infinite}
+.mq-group{display:flex;align-items:center;gap:26px;padding-right:26px}
+.mq-group span{font:600 13px/1 'Space Grotesk',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.mq-group i{font-style:normal;color:var(--accent);font-size:12px}
+.marquee:hover .mq-track{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* Cursor spotlight on cards (desktop) */
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .45s;
+  background:radial-gradient(460px circle at var(--sx,50%) var(--sy,50%),rgba(217,255,112,.07),transparent 62%)}
+.card:hover::after{opacity:1}
+/* Button shine sweep */
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::after{content:"";position:absolute;top:0;bottom:0;left:-70%;width:45%;z-index:-1;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-20deg)}
+.btn:hover::after{left:130%;transition:left .9s var(--ease)}
+/* Portrait glow breathes */
+.portrait{animation:glow 4.5s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 0 0 14px rgba(217,255,112,.12),0 0 60px rgba(217,255,112,.18),0 30px 80px rgba(0,0,0,.55)}}
+/* Background follows the cursor a little */
+.bg{transform:translate3d(var(--px,0px),var(--py,0px),0) scale(1.05);transition:transform 1.2s var(--ease)}
 /* Scroll progress bar */
 .progress{position:fixed;left:0;top:0;z-index:40;height:3px;width:100%;background:var(--accent);transform-origin:0 50%;transform:scaleX(0);box-shadow:0 0 12px rgba(217,255,112,.6);pointer-events:none}
 
@@ -347,6 +374,10 @@ img[width][height]{height:auto}
 <section aria-labelledby="portfolio-title" class="page" hidden="" id="page-portfolio">
   <h2 class="page-title" id="portfolio-title" tabindex="-1">Portfolio<span class="dot">.</span></h2>
   <p class="lead">Four areas of work. Pick one to see everything in it.</p>
+  <div aria-hidden="true" class="marquee"><div class="mq-track">
+    <div class="mq-group"><span>Video Ad Creatives</span><i>✦</i><span>3D Character Rigging</span><i>✦</i><span>Store Listings</span><i>✦</i><span>Game UI / UX</span><i>✦</i><span>Blender</span><i>✦</i><span>Mintegral &amp; Google Ads</span><i>✦</i></div>
+    <div class="mq-group"><span>Video Ad Creatives</span><i>✦</i><span>3D Character Rigging</span><i>✦</i><span>Store Listings</span><i>✦</i><span>Game UI / UX</span><i>✦</i><span>Blender</span><i>✦</i><span>Mintegral &amp; Google Ads</span><i>✦</i></div>
+  </div></div>
   <div class="card">
     <div class="tiles">
       <a class="tile" href="#video-ads" style="--i:0"><div class="thumb"><img alt="" decoding="async" loading="lazy" src="assets/web/candy-ball-run/cnd-062-poster.jpg"/><video aria-hidden="true" data-src="assets/web/candy-ball-run/preview.mp4" loop muted playsinline preload="none"></video><span class="tag">56 CREATIVES</span><span class="go" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div><h3>Video Ads</h3><p>Mobile game ad creatives</p></a>
@@ -757,6 +788,38 @@ img[width][height]{height:auto}
     if(!first){window.scrollTo({top:0,behavior:'instant'});const t=document.querySelector('#page-'+id+' [tabindex="-1"]');if(t)t.focus({preventScroll:true})}
     armReveal(document.getElementById('page-'+id));
     progress();
+    if(id==='portfolio')countUp();
+  }
+
+  // Home name: split into letters so they can rise in one by one (screen readers still read the whole name).
+  if(!reduced){const n=document.querySelector('.name');const txt=n.textContent;n.setAttribute('aria-label',txt);
+    n.innerHTML=[...txt].map((c,k)=>'<span class="ch" aria-hidden="true" style="--k:'+k+'">'+c+'</span>').join('')}
+
+  // Portfolio tile numbers count up from zero when the page opens.
+  function countUp(){
+    if(reduced)return;
+    document.querySelectorAll('#page-portfolio .tag').forEach(t=>{
+      const m=(t.dataset.txt||(t.dataset.txt=t.textContent)).match(/^(\d+)(.*)$/);if(!m)return;
+      const end=+m[1],rest=m[2],t0=performance.now(),dur=1100;
+      (function step(now){const p=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-p,3);t.textContent=Math.round(end*e)+rest;if(p<1)requestAnimationFrame(step)})(t0);
+    });
+  }
+
+  if(fine&&!reduced){
+    // Cursor spotlight on cards.
+    document.addEventListener('pointermove',e=>{const c=e.target.closest&&e.target.closest('.card');if(!c)return;const r=c.getBoundingClientRect();
+      c.style.setProperty('--sx',(e.clientX-r.left)+'px');c.style.setProperty('--sy',(e.clientY-r.top)+'px')},{passive:true});
+    // Background drifts slightly toward the cursor.
+    const bg=document.querySelector('.bg');let bgT=0;
+    document.addEventListener('pointermove',e=>{if(bgT)return;bgT=requestAnimationFrame(()=>{bgT=0;
+      bg.style.setProperty('--px',((e.clientX/innerWidth)-.5)*-18+'px');bg.style.setProperty('--py',((e.clientY/innerHeight)-.5)*-12+'px')})},{passive:true});
+    // Portfolio tiles tilt toward the cursor in 3D.
+    document.querySelectorAll('.tile').forEach(t=>{const th=t.querySelector('.thumb');
+      t.addEventListener('pointermove',e=>{const r=th.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+        th.style.transition='transform .15s ease-out,border-color .35s,box-shadow .35s';
+        th.style.transform='perspective(700px) rotateX('+(-y*10)+'deg) rotateY('+(x*12)+'deg) translateY(-4px)'});
+      t.addEventListener('pointerleave',()=>{th.style.transition='';th.style.transform=''});
+    });
   }
 
   // Scroll reveal: items below the fold fade and slide in as they scroll into view, a few at a time.
