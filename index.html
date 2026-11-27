@@ -55,6 +55,14 @@ svg.i.fill{fill:currentColor;stroke:none}
 
 /* Pages */
 main{padding:28px 16px 40px}
+/* Content fades out as it scrolls up under the nav bar. JS keeps --my at the viewport top, in main's coordinates.
+   Layer 1: the fade band (clear behind the bar, solid just below it). Layer 2: everything under the band. */
+main{--my:-9999px;--fade:112px;
+  -webkit-mask-image:linear-gradient(transparent 0,transparent 52px,#000 var(--fade)),linear-gradient(#000,#000);
+          mask-image:linear-gradient(transparent 0,transparent 52px,#000 var(--fade)),linear-gradient(#000,#000);
+  -webkit-mask-size:100% var(--fade),100% 100%;mask-size:100% var(--fade),100% 100%;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:0 var(--my),0 calc(var(--my) + var(--fade));mask-position:0 var(--my),0 calc(var(--my) + var(--fade))}
 .page{margin:0 auto;max-width:960px}
 .page[hidden]{display:none}
 .page.narrow{max-width:600px}
@@ -771,7 +779,9 @@ img[width][height]{height:auto}
 
   // Thin progress bar showing how far down the page you are.
   const bar=document.querySelector('.progress');let ticking=false;
-  function progress(){const max=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(max>0?Math.min(1,scrollY/max):0)+')';ticking=false}
+  const mainEl=document.querySelector('main');
+  function progress(){const max=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(max>0?Math.min(1,scrollY/max):0)+')';
+    mainEl.style.setProperty('--my',(scrollY-mainEl.offsetTop)+'px');ticking=false}
   addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(progress)}},{passive:true});
   addEventListener('resize',progress);
   addEventListener('hashchange',()=>show(resolve()));
