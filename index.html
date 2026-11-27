@@ -66,6 +66,14 @@ main{padding:28px 16px 40px}
 .page.enter>*:nth-child(5){animation-delay:.28s}
 .page.enter>*:nth-child(n+6){animation-delay:.34s}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+/* Scroll reveal: added by JS only to items below the fold, so nothing is hidden without JS or with reduced motion */
+.rv{opacity:0;transform:translateY(28px) scale(.98);transition:opacity .7s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+/* Title dots pop in when a page opens */
+.page.enter .page-title .dot,.page.enter .case-head h2 .dot{display:inline-block;animation:pop .6s .45s var(--ease) both}
+@keyframes pop{from{opacity:0;transform:scale(0)}60%{transform:scale(1.5)}to{opacity:1;transform:none}}
+/* Scroll progress bar */
+.progress{position:fixed;left:0;top:0;z-index:40;height:3px;width:100%;background:var(--accent);transform-origin:0 50%;transform:scaleX(0);box-shadow:0 0 12px rgba(217,255,112,.6);pointer-events:none}
 
 .card{position:relative;border:1px solid var(--line);border-radius:var(--r);background:var(--card);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:34px}
 .card.center{text-align:center}
@@ -101,6 +109,8 @@ p.lead{color:#c9c8cc;margin:0 auto;max-width:620px;text-align:center}
 /* Home */
 .mark{width:96px;height:78px;margin:4px auto 18px;color:var(--accent);filter:drop-shadow(0 0 22px rgba(217,255,112,.35));animation:float 6s ease-in-out infinite}
 @keyframes float{50%{transform:translateY(-6px)}}
+.page.enter .mark path{stroke-dasharray:1;animation:draw 1.6s .15s var(--ease) both}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 .name{font-size:clamp(38px,8vw,52px)}
 .role{color:var(--muted);font-style:italic;margin:6px 0 0}
 .status{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;font:600 11px/1 'Space Grotesk',sans-serif;letter-spacing:.14em;color:var(--muted)}
@@ -181,6 +191,14 @@ figcaption{color:var(--muted);font-size:13px;text-align:center;margin-top:10px}
 .rig-list li{padding:14px 16px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.02);color:#c9c8cc;font-size:14px}
 .rig-list b{color:var(--text)}
 .next{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+/* Hover: artwork lifts and catches the accent */
+@media (hover:hover) and (pointer:fine){
+  .art-grid img,.shot-grid img,.ui-grid img,.ui-hero img,.wide-grid img,.icon-row img,.phone video,.reel{transition:transform .5s var(--ease),border-color .3s,box-shadow .4s}
+  .art-grid img:hover,.shot-grid img:hover,.ui-grid img:hover,.ui-hero img:hover,.wide-grid img:hover,.icon-row img:hover,.phone video:hover{transform:translateY(-5px);border-color:var(--accent-line);box-shadow:0 20px 44px rgba(0,0,0,.5),0 0 0 1px var(--accent-line)}
+  .reel:hover{border-color:var(--accent-line);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+  .rig-list li,.facts div,.xp{transition:border-color .3s,background .3s,transform .4s var(--ease)}
+  .rig-list li:hover,.facts div:hover,.xp:hover{border-color:var(--accent-line);background:rgba(217,255,112,.04);transform:translateY(-2px)}
+}
 
 /* About */
 .about-text p{color:#c9c8cc;margin:0 0 14px}
@@ -293,7 +311,7 @@ img[width][height]{height:auto}
 <!-- HOME -->
 <section aria-labelledby="home-name" class="page narrow" id="page-home">
   <div class="card center">
-    <svg aria-hidden="true" class="mark" fill="none" viewBox="0 0 40 32"><path d="M2.5 27 12 5l9.5 22V7l8 10 8-10v20M6 19h12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/></svg>
+    <svg aria-hidden="true" class="mark" fill="none" viewBox="0 0 40 32"><path d="M2.5 27 12 5l9.5 22V7l8 10 8-10v20M6 19h12" pathLength="1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"/></svg>
     <h1 class="name" id="home-name" tabindex="-1">Aamir Mazhar</h1>
     <p class="role">CGI Artist &amp; 3D Rigger</p>
     <div class="status"><i></i>BASED IN PAKISTAN</div>
@@ -698,6 +716,7 @@ img[width][height]{height:auto}
 </main>
 
 <div aria-live="polite" class="toast" role="status"></div>
+<div aria-hidden="true" class="progress"></div>
 
 <script>
 (function(){
@@ -728,9 +747,35 @@ img[width][height]{height:auto}
     navLinks.forEach(a=>a.dataset.nav===section?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
     document.title=titles[id]||titles.home;
     if(!first){window.scrollTo({top:0,behavior:'instant'});const t=document.querySelector('#page-'+id+' [tabindex="-1"]');if(t)t.focus({preventScroll:true})}
+    armReveal(document.getElementById('page-'+id));
+    progress();
   }
+
+  // Scroll reveal: items below the fold fade and slide in as they scroll into view, a few at a time.
+  const RV='.phone,.art-grid figure,.wide-grid figure,.shot-grid figure,.ui-grid figure,.ui-hero,.icon-row,.reel,.rig-list li,.facts div,.xp,.cols>div,.soft div,.connect,.media-title,.section-title,.next';
+  const io=('IntersectionObserver' in window&&!reduced)?new IntersectionObserver(es=>{
+    let n=0;
+    es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;io.unobserve(el);
+      el.style.setProperty('--d',Math.min(n++,5)*0.07+'s');el.classList.add('in');
+      setTimeout(()=>{el.classList.remove('rv','in');el.style.removeProperty('--d')},1400)});
+  },{threshold:.01}):null;   // any visible pixel, so items at the very bottom of a page still reveal
+  function armReveal(page){
+    if(!io||!page)return;
+    const fold=innerHeight*0.92;
+    page.querySelectorAll(RV).forEach(el=>{
+      if(el.parentElement.closest(RV))return;           // reveal the outer item only
+      el.classList.remove('rv','in');
+      if(el.getBoundingClientRect().top>fold){el.classList.add('rv');io.observe(el)}
+    });
+  }
+
+  // Thin progress bar showing how far down the page you are.
+  const bar=document.querySelector('.progress');let ticking=false;
+  function progress(){const max=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(max>0?Math.min(1,scrollY/max):0)+')';ticking=false}
+  addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(progress)}},{passive:true});
+  addEventListener('resize',progress);
   addEventListener('hashchange',()=>show(resolve()));
-  show(resolve(),true);
+  show(resolve(),true);   // runs after the reveal and progress setup above
 
   document.querySelectorAll('[data-hist]').forEach(b=>b.addEventListener('click',()=>history[b.dataset.hist]()));
 
